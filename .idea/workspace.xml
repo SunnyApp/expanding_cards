@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9065c72d-40f4-4712-89c2-44c2ba2a5990" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../sunny_dart/lib/time/date_components.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../sunny_dart/lib/time/date_components.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../sunny_dart" />
+  </component>
+  <component name="JupyterTrust" id="d01aaaa5-af3d-46f9-b5bc-883a2a2e8ef9" />
+  <component name="ProjectId" id="1fffVJUlFUGJoIdNuYsD1ei24NI" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="dart.analysis.tool.window.force.activate" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9065c72d-40f4-4712-89c2-44c2ba2a5990" name="Default Changelist" comment="" />
+      <created>1596614090496</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596614090496</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="3424" y="140" width="936" height="689" key="#com.intellij.ide.util.MemberChooser" timestamp="1596735095710">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state x="486" y="91" key="#com.intellij.ide.util.MemberChooser/0.23.1440.826@0.23.1440.826" timestamp="1596668820095" />
+    <state x="3424" y="140" width="936" height="689" key="#com.intellij.ide.util.MemberChooser/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596735095710" />
+    <state x="3225" y="114" key="#xdebugger.evaluate" timestamp="1596738101365">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state x="423" y="80" key="#xdebugger.evaluate/0.23.1440.826@0.23.1440.826" timestamp="1596618426813" />
+    <state x="374" y="76" key="#xdebugger.evaluate/0.23.1440.827@0.23.1440.827" timestamp="1596701418613" />
+    <state x="3225" y="114" key="#xdebugger.evaluate/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596738101365" />
+    <state width="519" height="569" key="DebuggerActiveHint" timestamp="1596616582185">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="519" height="569" key="DebuggerActiveHint/0.23.1440.826@0.23.1440.826" timestamp="1596616582185" />
+    <state width="1531" height="272" key="GridCell.Tab.0.bottom" timestamp="1596742189199">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state width="803" height="112" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1596668480459" />
+    <state width="858" height="272" key="GridCell.Tab.0.bottom/0.23.1440.827@0.23.1440.827" timestamp="1596701376906" />
+    <state width="1531" height="272" key="GridCell.Tab.0.bottom/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596742189199" />
+    <state width="1531" height="272" key="GridCell.Tab.0.center" timestamp="1596742189198">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state width="803" height="112" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1596668480458" />
+    <state width="858" height="272" key="GridCell.Tab.0.center/0.23.1440.827@0.23.1440.827" timestamp="1596701376905" />
+    <state width="1531" height="272" key="GridCell.Tab.0.center/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596742189198" />
+    <state width="1531" height="272" key="GridCell.Tab.0.left" timestamp="1596742189197">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state width="803" height="112" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1596668480458" />
+    <state width="858" height="272" key="GridCell.Tab.0.left/0.23.1440.827@0.23.1440.827" timestamp="1596701376904" />
+    <state width="1531" height="272" key="GridCell.Tab.0.left/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596742189197" />
+    <state width="1531" height="272" key="GridCell.Tab.0.right" timestamp="1596742189198">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state width="803" height="112" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1596668480458" />
+    <state width="858" height="272" key="GridCell.Tab.0.right/0.23.1440.827@0.23.1440.827" timestamp="1596701376905" />
+    <state width="1531" height="272" key="GridCell.Tab.0.right/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596742189198" />
+    <state width="1531" height="272" key="GridCell.Tab.1.bottom" timestamp="1596742189196">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state width="803" height="112" key="GridCell.Tab.1.bottom/0.23.1440.826@0.23.1440.826" timestamp="1596668480457" />
+    <state width="858" height="272" key="GridCell.Tab.1.bottom/0.23.1440.827@0.23.1440.827" timestamp="1596701295074" />
+    <state width="1531" height="272" key="GridCell.Tab.1.bottom/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596742189196" />
+    <state width="1531" height="272" key="GridCell.Tab.1.center" timestamp="1596742189194">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state width="803" height="112" key="GridCell.Tab.1.center/0.23.1440.826@0.23.1440.826" timestamp="1596668480456" />
+    <state width="858" height="272" key="GridCell.Tab.1.center/0.23.1440.827@0.23.1440.827" timestamp="1596701295073" />
+    <state width="1531" height="272" key="GridCell.Tab.1.center/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596742189194" />
+    <state width="1531" height="272" key="GridCell.Tab.1.left" timestamp="1596742189193">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state width="803" height="112" key="GridCell.Tab.1.left/0.23.1440.826@0.23.1440.826" timestamp="1596668480456" />
+    <state width="858" height="272" key="GridCell.Tab.1.left/0.23.1440.827@0.23.1440.827" timestamp="1596701295073" />
+    <state width="1531" height="272" key="GridCell.Tab.1.left/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596742189193" />
+    <state width="1531" height="272" key="GridCell.Tab.1.right" timestamp="1596742189195">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state width="803" height="112" key="GridCell.Tab.1.right/0.23.1440.826@0.23.1440.826" timestamp="1596668480457" />
+    <state width="858" height="272" key="GridCell.Tab.1.right/0.23.1440.827@0.23.1440.827" timestamp="1596701295073" />
+    <state width="1531" height="272" key="GridCell.Tab.1.right/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596742189195" />
+    <state x="458" y="100" key="RollbackChangesDialog" timestamp="1596669156438">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state x="458" y="100" key="RollbackChangesDialog/0.23.1440.826@0.23.1440.826" timestamp="1596669156438" />
+    <state x="119" y="23" key="SettingsEditor" timestamp="1596614583475">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state x="119" y="23" key="SettingsEditor/0.23.1440.826@0.23.1440.826" timestamp="1596614583475" />
+    <state x="3297" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596675140078">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state x="3297" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596675140078" />
+    <state x="163" y="108" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1596700545784">
+      <screen x="0" y="23" width="1440" height="827" />
+    </state>
+    <state x="163" y="108" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1440.827@0.23.1440.827" timestamp="1596700545784" />
+    <state x="3177" y="239" width="1327" height="985" key="find.popup" timestamp="1596735331660">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state x="347" y="149" width="746" height="574" key="find.popup/0.23.1440.826@0.23.1440.826" timestamp="1596668816238" />
+    <state x="3177" y="239" width="1327" height="985" key="find.popup/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596735331660" />
+    <state x="301" y="194" key="run.anything.popup" timestamp="1596652895617">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state x="301" y="194" key="run.anything.popup/0.23.1440.826@0.23.1440.826" timestamp="1596652895617" />
+    <state x="3095" y="23" width="1490" height="1771" key="search.everywhere.popup" timestamp="1596739733655">
+      <screen x="2560" y="23" width="2560" height="1417" />
+    </state>
+    <state x="301" y="23" width="838" height="1032" key="search.everywhere.popup/0.23.1440.826@0.23.1440.826" timestamp="1596668672699" />
+    <state x="301" y="23" width="839" height="1034" key="search.everywhere.popup/0.23.1440.827@0.23.1440.827" timestamp="1596700554246" />
+    <state x="3095" y="23" width="1490" height="1771" key="search.everywhere.popup/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596739733655" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/expanding_card.dart</url>
+          <line>411</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
