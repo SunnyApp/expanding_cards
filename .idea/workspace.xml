@@ -2,19 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9065c72d-40f4-4712-89c2-44c2ba2a5990" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_options.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expanding_cards.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expanding_cards.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/drag_to_shrink.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/drag_to_shrink.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/expanding_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/expanding_card.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/platform_card_theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/platform_card_theme.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sunny_dart/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../sunny_dart/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sunny_dart/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../sunny_dart/pubspec.yaml" afterDir="false" />
     </list>
@@ -46,6 +33,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.force.activate" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
     <property name="nodejs_package_manager_path" value="npm" />
