@@ -2,7 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9065c72d-40f4-4712-89c2-44c2ba2a5990" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../sunny_dart/lib/time/date_components.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../sunny_dart/lib/time/date_components.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_options.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expanding_cards.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expanding_cards.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/drag_to_shrink.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/drag_to_shrink.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/expanding_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/expanding_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/platform_card_theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/platform_card_theme.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sunny_dart/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../sunny_dart/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sunny_dart/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../sunny_dart/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,10 +31,11 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../sunny_dart" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JupyterTrust" id="d01aaaa5-af3d-46f9-b5bc-883a2a2e8ef9" />
   <component name="ProjectId" id="1fffVJUlFUGJoIdNuYsD1ei24NI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
@@ -31,13 +46,12 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.force.activate" value="true" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -128,9 +142,10 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state x="458" y="100" key="RollbackChangesDialog/0.23.1440.826@0.23.1440.826" timestamp="1596669156438" />
-    <state x="119" y="23" key="SettingsEditor" timestamp="1596614583475">
-      <screen x="0" y="23" width="1440" height="826" />
+    <state x="119" y="23" width="1280" height="825" key="SettingsEditor" timestamp="1596867778000">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="119" y="23" width="1280" height="825" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1596867778000" />
     <state x="119" y="23" key="SettingsEditor/0.23.1440.826@0.23.1440.826" timestamp="1596614583475" />
     <state x="3297" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596675140078">
       <screen x="2560" y="23" width="2560" height="1417" />
@@ -149,9 +164,10 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state x="301" y="194" key="run.anything.popup/0.23.1440.826@0.23.1440.826" timestamp="1596652895617" />
-    <state x="3095" y="23" width="1490" height="1771" key="search.everywhere.popup" timestamp="1596739733655">
-      <screen x="2560" y="23" width="2560" height="1417" />
+    <state x="301" y="23" width="839" height="1125" key="search.everywhere.popup" timestamp="1596867928794">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="301" y="23" width="839" height="1125" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1596867928794" />
     <state x="301" y="23" width="838" height="1032" key="search.everywhere.popup/0.23.1440.826@0.23.1440.826" timestamp="1596668672699" />
     <state x="301" y="23" width="839" height="1034" key="search.everywhere.popup/0.23.1440.827@0.23.1440.827" timestamp="1596700554246" />
     <state x="3095" y="23" width="1490" height="1771" key="search.everywhere.popup/0.23.2560.1365/2560.23.2560.1417@2560.23.2560.1417" timestamp="1596739733655" />
@@ -161,7 +177,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/expanding_card.dart</url>
-          <line>411</line>
+          <line>408</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>

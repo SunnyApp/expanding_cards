@@ -98,7 +98,7 @@ class _DragToShrinkState extends State<DragToShrink>
 
     _controller.addListener(() {
       setState(() {
-        _scale = _controller.value as double;
+        _scale = _controller.value;
       });
     });
   }

@@ -20,21 +20,6 @@
       <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/expanding_cards/example/ios/Flutter/App.framework/flutter_assets/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/ios/Flutter/App.framework/flutter_assets/packages" />
     </content>
-    <content url="file://$MODULE_DIR$/../meta_forms">
-      <excludeFolder url="file://$MODULE_DIR$/../meta_forms/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/../meta_forms/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/../meta_forms/build" />
-    </content>
-    <content url="file://$MODULE_DIR$/../sunny_dart">
-      <excludeFolder url="file://$MODULE_DIR$/../sunny_dart/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/../sunny_dart/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/../sunny_dart/build" />
-    </content>
-    <content url="file://$MODULE_DIR$/../sunny_forms">
-      <excludeFolder url="file://$MODULE_DIR$/../sunny_forms/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/../sunny_forms/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/../sunny_forms/build" />
-    </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Dart SDK" level="project" />
     <orderEntry type="library" name="Flutter Plugins" level="project" />

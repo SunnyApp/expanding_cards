@@ -241,9 +241,6 @@ class _ExpandingCardState extends State<ExpandingCard>
 
   Widget _wrapHero(Widget builtCard, ExpandingCardState state,
       [Animation<double> animation]) {
-    ExpandingCardState returnState = state == ExpandingCardState.collapsed
-        ? ExpandingCardState.expanded
-        : ExpandingCardState.collapsed;
     return Material(
       color: Colors.transparent,
       child: Provider.value(
@@ -462,22 +459,11 @@ class _ExpandingCardState extends State<ExpandingCard>
         : padded;
   }
 
-  double get _footerHeightCollapsed {
-    return widget.footer?.preferredSize?.height;
-  }
-
   double get _headerHeightExpanded {
     final _header = widget.header;
     return _header is HeroBar
         ? _header.expandedSize?.height ?? _header.preferredSize?.height
         : _header?.preferredSize?.height;
-  }
-
-  double get _footerHeightExpanded {
-    final _footer = widget.footer;
-    return _footer is HeroBar
-        ? _footer.expandedSize?.height ?? _footer.preferredSize?.height
-        : _footer?.preferredSize?.height;
   }
 
   Widget _buildFooter(
