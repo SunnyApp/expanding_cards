@@ -98,7 +98,7 @@ class _DragToShrinkState extends State<DragToShrink>
 
     _controller.addListener(() {
       setState(() {
-        _scale = _controller.value;
+        _scale = _controller.value as double;
       });
     });
   }
@@ -118,9 +118,9 @@ class _DragToShrinkState extends State<DragToShrink>
     final unitVelocity = unitsPerSecondY;
 
     const spring = SpringDescription(
-      mass: 30,
-      stiffness: 1,
-      damping: 1,
+      mass: 30.0,
+      stiffness: 1.0,
+      damping: 1.0,
     );
 
     final simulation = SpringSimulation(spring, scale, 1, unitVelocity);

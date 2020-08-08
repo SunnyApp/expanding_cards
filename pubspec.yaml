@@ -5,24 +5,19 @@ author:
 homepage:
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.8.0 <3.0.0"
   flutter: ">=1.10.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  sunny_dart: ^0.5.7
-  provider: ^4.3.1
+  sunny_dart: ^0.5.8
+  provider: ^4.3.2
   matrix4_transform: ^1.1.4
-#  sunny_forms: ^0.4.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-dependency_overrides:
-  sunny_dart:
-    path: ../sunny_dart
 
 
 # For information on the generic Dart part of this file, see the
