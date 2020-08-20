@@ -182,7 +182,7 @@ class _TestExpandingCard extends StatelessWidget {
       theme: PlatformCardTheme.ofRadius(
         radiusAmount: 12,
       ),
-      header: HeroBar.ofHeight(
+      header: HeroBar(
         height: 135,
         expandedHeight: 200,
 //        child: CachedNetworkImage(
@@ -223,7 +223,7 @@ class _TestExpandingCard extends StatelessWidget {
       headerHeight: headerHeight,
       showClose: true,
       footer: footerColor != null
-          ? HeroBar.ofHeight(
+          ? HeroBar(
               height: 60,
               expandedHeight: 100,
               child: Container(

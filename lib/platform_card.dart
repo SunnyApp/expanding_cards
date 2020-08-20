@@ -1,4 +1,5 @@
 import 'package:expanding_cards/platform_card_theme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
@@ -45,7 +46,7 @@ class PlatformCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = this.theme ?? PlatformCardTheme.of(context);
     Widget widget;
-    if (isIOS) {
+    if (!kIsWeb && isIOS == true) {
       final iosCenter = Container(
         margin: margin ?? theme.margin,
         padding: padding ?? theme.padding,

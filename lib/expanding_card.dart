@@ -1,7 +1,8 @@
 import 'package:expanding_cards/drag_to_shrink.dart';
-import 'package:expanding_cards/expanding_card_route.dart';
 import 'package:expanding_cards/platform_card.dart';
 import 'package:expanding_cards/platform_card_theme.dart';
+import 'package:expanding_cards/taps.dart';
+import 'package:expanding_cards/tweens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -33,6 +34,8 @@ typedef ExpandedCardWrapper = Widget Function(
 /// Displays the trip with an item or something else
 ///
 class ExpandingCard extends StatefulWidget {
+  static const kDefaultTransitionDuration = Duration(milliseconds: 800);
+
   /// A Widget or WidgetBuilder.  This is displayed when the card
   /// is in collapsed mode
   final dynamic expandedSection;
@@ -114,7 +117,7 @@ class ExpandingCard extends StatefulWidget {
 enum ExpandingCardState { collapsed, transitioning, expanded }
 
 class _ExpandingCardState extends State<ExpandingCard>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, LoggingMixin {
   ExpandingCardState _cardState = ExpandingCardState.collapsed;
   AnimationController _controller;
 
@@ -144,6 +147,9 @@ class _ExpandingCardState extends State<ExpandingCard>
 
   NavigatorState _pushedTo;
 
+  MediaQueryData _mq;
+  bool _isDown = false;
+
   @override
   void initState() {
     super.initState();
@@ -153,7 +159,7 @@ class _ExpandingCardState extends State<ExpandingCard>
     _discriminator = widget.discriminator ?? uuid();
     _controller = AnimationController(
       value: 0,
-      duration: const Duration(milliseconds: 300),
+      duration: ExpandingCard.kDefaultTransitionDuration,
       vsync: this,
     );
     _theme = widget.theme;
@@ -167,6 +173,7 @@ class _ExpandingCardState extends State<ExpandingCard>
 
   @override
   Widget build(BuildContext context) {
+    _mq ??= MediaQuery.of(context);
     _theme ??= PlatformCardTheme.of(context);
     return _builtWithGestures ??= _wrapHero(
       _buildWithGestures(context, _cardState),
@@ -189,12 +196,12 @@ class _ExpandingCardState extends State<ExpandingCard>
 
   Widget builtExpandedHeader(BuildContext context) {
     return _builtExpandedHeader ??= SliverAppBar(
-      pinned: true,
+      pinned: false,
       expandedHeight: _headerHeightExpanded - 44,
       backgroundColor: Colors.transparent,
       flexibleSpace: FlexibleSpaceBar(
         background: clippedHeader,
-        collapseMode: CollapseMode.pin,
+        collapseMode: CollapseMode.parallax,
         stretchModes: [StretchMode.zoomBackground],
       ),
       automaticallyImplyLeading: widget.showClose,
@@ -249,6 +256,9 @@ class _ExpandingCardState extends State<ExpandingCard>
         child: Hero(
           tag: "$_discriminator",
           transitionOnUserGestures: true,
+          createRectTween: (start, end) {
+            return OvershootingRectTween.ofPosition(begin: start, end: end);
+          },
           flightShuttleBuilder: (
             BuildContext flightContext,
             Animation<double> animation,
@@ -263,11 +273,21 @@ class _ExpandingCardState extends State<ExpandingCard>
 
             Widget built;
             if (state.isCollapsed) {
-              built = _builtWithGesturesCollapsed ??=
-                  _buildWithGestures(context, state, animation);
+              built = _builtWithGesturesCollapsed ??= CustomScrollView(
+                slivers: [
+                  SliverFillRemaining(
+                    child: _buildWithGestures(context, state, animation),
+                  ),
+                ],
+              );
             } else {
-              built = _builtWithGesturesExpanded ??=
-                  _buildWithGestures(context, state, animation);
+              built = _builtWithGesturesExpanded ??= CustomScrollView(
+                slivers: [
+                  SliverFillRemaining(
+                    child: _buildWithGestures(context, state, animation),
+                  ),
+                ],
+              );
             }
             var widget = Provider.value(
               value: HeroAnimation(animation, state),
@@ -421,19 +441,33 @@ class _ExpandingCardState extends State<ExpandingCard>
     /// We only want gestures when collapsed
     final card = _buildCollapsedCard(_cardState, animation);
     if (_cardState == ExpandingCardState.collapsed) {
-      return GestureDetector(
-        onTap: () {
+      return TapHandler(
+        pressScale: 0.97,
+        duration: 100.ms,
+        pressOpacity: null,
+        onTap: (context) async {
+          final RenderBox ro = context.findRenderObject() as RenderBox;
+          final pb = ro.localToGlobal(Offset.zero);
+          final dur = (pb.dy / 400.0).clamp(0.8, 1.5);
+          log.info("Dur $dur");
           if (widget.onCardTap != null) {
             widget.onCardTap(context, (context) => _buildExpandedPage(context));
           } else {
             _pushedTo =
                 Navigator.of(context, rootNavigator: widget.useRootNavigator);
-            _pushedTo.push(ExpandingCardRoute(
-              fullscreenDialog: true,
-              maintainState: true,
-              builder: (context) {
+            _pushedTo.push(PageRouteBuilder(
+              pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secondaryAnimation) {
                 return _expandedPage ??= _buildExpandedPage(context);
               },
+              transitionsBuilder: (context, a1, a2, widget) {
+                return widget;
+              },
+              transitionDuration:
+                  ExpandingCard.kDefaultTransitionDuration * dur,
+              opaque: false,
+              fullscreenDialog: false,
+              maintainState: true,
             ));
           }
         },

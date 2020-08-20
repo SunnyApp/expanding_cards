@@ -77,7 +77,7 @@ class _DragToShrinkState extends State<DragToShrink>
   /// The cached child widget, with any decoration
   Widget _wrapped;
 
-  /// Cached [MediaQuery.size] of this widget
+  /// Cached [MediaQuery.sizeAnim] of this widget
   Size _size;
 
   /// Cached value for the centerPoint, based off [_size]
