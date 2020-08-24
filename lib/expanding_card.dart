@@ -1,6 +1,6 @@
-import 'package:expanding_cards/drag_to_shrink.dart';
 import 'package:expanding_cards/platform_card.dart';
 import 'package:expanding_cards/platform_card_theme.dart';
+import 'package:expanding_cards/resizing_pinned_header.dart';
 import 'package:expanding_cards/taps.dart';
 import 'package:expanding_cards/tweens.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,6 +27,9 @@ typedef ExpandingCardCallback<R> = R Function(
     BuildContext context, BuildExpandedCard builder);
 typedef BuildExpandedCard = Widget Function(BuildContext context);
 
+typedef HeaderBuilder = Widget Function(
+    BuildContext context, ScrollController scroller, NavigatorState state);
+
 /// Used to decorate the expanded card
 typedef ExpandedCardWrapper = Widget Function(
     BuildContext context, Widget child);
@@ -50,6 +53,9 @@ class ExpandingCard extends StatefulWidget {
 
   /// A header that spans to the top of the screen
   final ObstructingPreferredSizeWidget header;
+
+  /// A header that spans to the top of the screen
+  final ObstructingPreferredSizeWidget preHeader;
 
   /// A list of elements that are always displayed at the top of the card
   final List<Widget> alwaysShown;
@@ -84,10 +90,23 @@ class ExpandingCard extends StatefulWidget {
   /// the height of that flexible space.
   final double headerHeight;
 
+  final dynamic headerLeading;
+  final dynamic flexTitle;
+  final dynamic headerTrailing;
+  final dynamic headerTitle;
+
+  /// Whether to display the already expanded widget
+  final bool isExpanded;
+
+  final bool pinFirst;
+
   /// The background of the card
   final Color backgroundColor;
 
   final bool useRootNavigator;
+
+  /// THe navigator used to expand this card - used when starting from teh expanded state.
+  final NavigatorState navigator;
 
   const ExpandingCard({
     Key key,
@@ -95,14 +114,22 @@ class ExpandingCard extends StatefulWidget {
     this.expandedSection,
     this.collapsedSection,
     this.footer,
+    this.preHeader,
     this.header,
+    this.flexTitle,
+    this.headerLeading,
+    this.headerTrailing,
+    this.isExpanded,
     this.theme,
+    this.headerTitle,
     this.discriminator,
     this.onCardTap,
+    this.pinFirst = false,
     this.expandedFooterWrapper,
     this.expandedWrapper,
     this.showClose = false,
     this.useRootNavigator = false,
+    this.navigator,
     this.headerHeight,
     this.backgroundColor = Colors.white,
     this.alwaysShown,
@@ -115,6 +142,38 @@ class ExpandingCard extends StatefulWidget {
 }
 
 enum ExpandingCardState { collapsed, transitioning, expanded }
+
+class FixedSliverOverlapHandle implements SliverOverlapAbsorberHandle {
+  final double _layoutExtent;
+  final double _scrollExtent;
+
+  const FixedSliverOverlapHandle(this._layoutExtent, this._scrollExtent);
+
+  @override
+  bool get hasListeners {
+    return false;
+  }
+
+  @override
+  void notifyListeners() {}
+
+  @override
+  void dispose() {}
+
+  @override
+  void removeListener(VoidCallback listener) {}
+
+  @override
+  void addListener(VoidCallback listener) {
+    listener();
+  }
+
+  @override
+  double get layoutExtent => _layoutExtent;
+
+  @override
+  double get scrollExtent => _scrollExtent;
+}
 
 class _ExpandingCardState extends State<ExpandingCard>
     with SingleTickerProviderStateMixin, LoggingMixin {
@@ -133,6 +192,7 @@ class _ExpandingCardState extends State<ExpandingCard>
   Widget _transition;
 
   Widget _builtExpandedHeader;
+  Widget _builtPinnedHeader;
   Widget _builtCollapsedHeader;
 
   Widget _builtExpandedFooter;
@@ -145,14 +205,21 @@ class _ExpandingCardState extends State<ExpandingCard>
 
   Widget _expandedPage;
 
-  NavigatorState _pushedTo;
+  NavigatorState _sourceNavigator;
 
   MediaQueryData _mq;
   bool _isDown = false;
 
+  SliverOverlapAbsorberHandle _handle;
+  SliverOverlapAbsorberHandle _h1Handle;
+
+  ScrollController _scroller;
+
   @override
   void initState() {
     super.initState();
+    _handle = FixedSliverOverlapHandle(0, 0);
+
     _bottomPadding = widget.footer != null
         ? EdgeInsets.only(bottom: widget.footer.preferredSize.height)
         : EdgeInsets.zero;
@@ -163,11 +230,16 @@ class _ExpandingCardState extends State<ExpandingCard>
       vsync: this,
     );
     _theme = widget.theme;
+    _h1Handle = SliverOverlapAbsorberHandle();
+    _scroller = ScrollController();
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _handle.dispose();
+    _h1Handle.dispose();
+    _scroller.dispose();
     super.dispose();
   }
 
@@ -175,6 +247,16 @@ class _ExpandingCardState extends State<ExpandingCard>
   Widget build(BuildContext context) {
     _mq ??= MediaQuery.of(context);
     _theme ??= PlatformCardTheme.of(context);
+    if (widget.isExpanded == true) {
+      Widget widget;
+      return Provider.value(
+        value: HeroAnimation(null, ExpandingCardState.expanded),
+        updateShouldNotify: (a, b) => a != b,
+        child: Builder(
+          builder: (context) => widget ??= _buildExpandedPage(context),
+        ),
+      );
+    }
     return _builtWithGestures ??= _wrapHero(
       _buildWithGestures(context, _cardState),
       _cardState,
@@ -194,23 +276,132 @@ class _ExpandingCardState extends State<ExpandingCard>
     }
   }
 
-  Widget builtExpandedHeader(BuildContext context) {
-    return _builtExpandedHeader ??= SliverAppBar(
-      pinned: false,
-      expandedHeight: _headerHeightExpanded - 44,
-      backgroundColor: Colors.transparent,
-      flexibleSpace: FlexibleSpaceBar(
-        background: clippedHeader,
-        collapseMode: CollapseMode.parallax,
-        stretchModes: [StretchMode.zoomBackground],
+  Widget builtPinnedHeader(BuildContext context) {
+    final firstWidget = widget.alwaysShown.first;
+    double height;
+    if (firstWidget is HeroBar) {
+      height = firstWidget.expandedSize.height;
+    } else if (firstWidget is HeroBarWidget) {
+      height = firstWidget.expandedHeight;
+    }
+    return _builtPinnedHeader ??= SliverPersistentHeader(
+      pinned: true,
+      delegate: ResizingPinnedHeader(
+        debugLabel: "Pinned: ",
+        expandedHeight: height ?? kToolbarHeight,
+//        stretchConfiguration: OverScrollHeaderStretchConfiguration(
+//          stretchTriggerOffset: 50,
+//        ),
+        child: firstWidget,
+        builder: (size, ratio, child) => child,
       ),
-      automaticallyImplyLeading: widget.showClose,
-      onStretchTrigger: () async {
-        Future.microtask(() => _pushedTo.pop(true));
-      },
-      stretchTriggerOffset: widget.dragToCloseThreshold,
-      stretch: widget.dragToCloseThreshold != null,
     );
+  }
+//
+//  Widget builtExpandedHeader2(BuildContext context) {
+////    final staticH1 = Stack(
+////
+////      children: [
+////        Container(color: Colors.white),
+////        FlexibleSpaceBar(
+////          background: clippedHeader,
+//////                  centerTitle: true,
+//////                  titlePadding: EdgeInsets.all(8),
+////          collapseMode: CollapseMode.parallax,
+////          stretchModes: [StretchMode.zoomBackground, StretchMode.fadeTitle],
+////        ),
+////      ],
+////    );
+//    return _builtExpandedHeader ??= SliverAppBar(
+//      primary: false,
+//      pinned: true,
+//      stretch: true,
+//      elevation: 0,
+//      toolbarHeight: 10,
+//      collapsedHeight: 15,
+//      onStretchTrigger: () async {},
+//      flexibleSpace: FlexibleSpaceBar(
+//        background: widget.header,
+//        centerTitle: true,
+//        stretchModes: [
+//          StretchMode.zoomBackground,
+//          StretchMode.fadeTitle,
+//        ],
+////                  centerTitle: true,
+////                  titlePadding: EdgeInsets.all(8),
+//        collapseMode: CollapseMode.parallax,
+//      ),
+//      expandedHeight: _headerHeightExpanded,
+//
+////          actions:
+////          widget.headerTrailing == null ? null : [widget.headerTrailing],
+//////          automaticallyImplyLeading: widget.showClose == true,
+////          automaticallyImplyLeading: false,
+////          onStretchTrigger: () async {
+////            Future.microtask(() => _pushedTo.pop(true));
+////          },
+////          stretchTriggerOffset: widget.dragToCloseThreshold,
+////          stretch: widget.dragToCloseThreshold != null,
+////          ),
+//    );
+//  }
+
+  Widget builtExpandedHeader(BuildContext context) {
+    return SliverLayoutBuilder(
+      builder: (context, size) {
+        final top = WidgetsBinding.instance.window.padding.top /
+            WidgetsBinding.instance.window.devicePixelRatio;
+
+        return _builtExpandedHeader ??= SliverAppBar(
+          primary: true,
+          pinned: true,
+
+          title: widget.headerTitle == null
+              ? null
+              : _buildHeaderWidget(context, widget.headerTitle),
+          expandedHeight: _headerHeightExpanded - top,
+          backgroundColor: Colors.white,
+          elevation: 0,
+
+          toolbarHeight: widget.headerHeight,
+          leading: _buildHeaderWidget(context, widget.headerLeading),
+          flexibleSpace: FlexibleSpaceBar(
+            background: widget.header,
+            centerTitle: false,
+            titlePadding: EdgeInsets.all(8),
+            collapseMode: CollapseMode.parallax,
+            stretchModes: [StretchMode.zoomBackground],
+            title: _buildHeaderWidget(context, widget.flexTitle),
+          ),
+
+//          leading: widget.headerLeading,
+//          leading: _buildHeaderWidget(context, widget.headerLeading),
+          actions: widget.headerTrailing == null
+              ? null
+              : [_buildHeaderWidget(context, widget.headerTrailing)],
+          automaticallyImplyLeading: widget.showClose == true,
+          onStretchTrigger: () async {
+            Future.microtask(() => pushedTo(context).pop(true));
+          },
+          stretchTriggerOffset: widget.dragToCloseThreshold,
+          stretch: widget.dragToCloseThreshold != null,
+        );
+      },
+    );
+  }
+
+  NavigatorState pushedTo(BuildContext context) =>
+      _sourceNavigator ?? Navigator.of(context);
+
+  Widget _buildHeaderWidget(BuildContext context, final dynamic widget) {
+    if (widget == null) return null;
+    if (widget is Widget) {
+      return widget;
+    }
+    if (widget is HeaderBuilder) {
+      return widget(context, _scroller, pushedTo(context));
+    }
+    throw illegalState("Invalid header type.  Must be Widget or HeaderBuilder");
   }
 
   Widget get builtCollapsedHeader {
@@ -240,9 +431,19 @@ class _ExpandingCardState extends State<ExpandingCard>
   }
 
   Widget get clippedHeader {
+    final source = widget.preHeader != null
+        ? Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+                widget.preHeader,
+                if (widget.header != null) widget.header,
+              ])
+        : widget.header;
+
     return ClipRRect(
       borderRadius: _theme.borderRadius.top,
-      child: widget.header,
+      child: source,
     );
   }
 
@@ -273,21 +474,11 @@ class _ExpandingCardState extends State<ExpandingCard>
 
             Widget built;
             if (state.isCollapsed) {
-              built = _builtWithGesturesCollapsed ??= CustomScrollView(
-                slivers: [
-                  SliverFillRemaining(
-                    child: _buildWithGestures(context, state, animation),
-                  ),
-                ],
-              );
+              built = _builtWithGesturesCollapsed ??=
+                  _buildWithGestures(context, state, animation);
             } else {
-              built = _builtWithGesturesExpanded ??= CustomScrollView(
-                slivers: [
-                  SliverFillRemaining(
-                    child: _buildWithGestures(context, state, animation),
-                  ),
-                ],
-              );
+              built = _builtWithGesturesExpanded ??=
+                  _buildWithGestures(context, state, animation);
             }
             var widget = Provider.value(
               value: HeroAnimation(animation, state),
@@ -313,21 +504,24 @@ class _ExpandingCardState extends State<ExpandingCard>
       margin: EdgeInsets.zero,
       padding: EdgeInsets.zero,
       child: Stack(
-          alignment: Alignment.bottomCenter,
-          fit: StackFit.passthrough,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                if (widget.header != null) builtCollapsedHeader,
-                ...?widget?.alwaysShown,
-                _buildBody(context, _cardState, animation),
-              ],
-            ),
-            if (widget.footer != null)
-              builtFooter(context, animation, _cardState),
-          ]),
+        alignment: Alignment.bottomCenter,
+        fit: StackFit.passthrough,
+        children: [
+          ClipRRect(
+              borderRadius: _theme.borderRadius,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (widget.header != null) builtCollapsedHeader,
+                  ...?widget?.alwaysShown,
+                  _buildBody(context, _cardState, animation),
+                ],
+              )),
+          if (widget.footer != null)
+            builtFooter(context, animation, _cardState),
+        ],
+      ),
     );
   }
 
@@ -342,12 +536,10 @@ class _ExpandingCardState extends State<ExpandingCard>
             for (final headerWidget in widget.alwaysShown.orEmpty())
               if (count++ >= startIndex)
                 if (count == 1)
-                  ClipRRect(
-                      borderRadius: _theme.borderRadius.top,
-                      child: Container(
-                        color: widget.backgroundColor,
-                        child: headerWidget,
-                      ))
+                  Container(
+                    color: widget.backgroundColor,
+                    child: headerWidget,
+                  )
                 else
                   Container(
                     color: widget.backgroundColor,
@@ -358,22 +550,22 @@ class _ExpandingCardState extends State<ExpandingCard>
   }
 
   Widget _buildExpandedPage(BuildContext context) {
+    // Safe area
     final built = Material(
       color: Colors.transparent,
-      child: DragToShrink(
-        child: _wrapHero(
-          Builder(builder: (context) {
-            return Scaffold(
-//                            backgroundColor: widget.backgroundColor,
-              backgroundColor: Colors.transparent,
-              body: Stack(
-                alignment: _cardState == ExpandingCardState.expanded
-                    ? Alignment.topCenter
-                    : Alignment.bottomCenter,
-                fit: _cardState == ExpandingCardState.expanded
-                    ? StackFit.expand
-                    : StackFit.passthrough,
-                children: [
+      child: _wrapHero(
+        Builder(builder: (context) {
+          final mq = MediaQuery.of(context);
+          return CupertinoPageScaffold(
+            backgroundColor: widget.backgroundColor,
+            child: Stack(
+              alignment: _cardState == ExpandingCardState.expanded
+                  ? Alignment.topCenter
+                  : Alignment.bottomCenter,
+              fit: _cardState == ExpandingCardState.expanded
+                  ? StackFit.expand
+                  : StackFit.passthrough,
+              children: [
 //                  Column(
 //                    mainAxisSize: MainAxisSize.max,
 //                    children: [
@@ -393,42 +585,79 @@ class _ExpandingCardState extends State<ExpandingCard>
 //                      ),
 //                    ],
 //                  ),
-                  Container(
-                    padding: _bottomPadding,
-                    child: CustomScrollView(
-                      slivers: [
-                        if (widget.header != null) builtExpandedHeader(context),
-                        SliverFillRemaining(
-                          hasScrollBody: false,
-                          fillOverscroll: true,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: widget.backgroundColor,
-                                borderRadius: _theme.borderRadius),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                _builtExpandedSticky ??= _buildSticky(
-                                    ExpandingCardState.expanded,
-                                    startIndex: 0,
-                                    animation: null),
-                                _buildMiddleSectionNoInset(
-                                    context, ExpandingCardState.expanded),
-                              ],
-                            ),
+                Container(
+                  padding: _bottomPadding,
+                  child:
+//                    NestedScrollView(
+//                      headerSliverBuilder:
+//                          (BuildContext context, bool innerBoxIsScrolled) {
+//                        return [
+//                          if (widget.header != null)
+//                            SliverOverlapAbsorber(
+//                              // This widget takes the overlapping behavior of the SliverAppBar,
+//                              // and redirects it to the SliverOverlapInjector below. If it is
+//                              // missing, then it is possible for the nested "inner" scroll view
+//                              // below to end up under the SliverAppBar even when the inner
+//                              // scroll view thinks it has not been scrolled.
+//                              // This is not necessary if the "headerSliverBuilder" only builds
+//                              // widgets that do not overlap the next sliver.
+//                              handle: NestedScrollView
+//                                  .sliverOverlapAbsorberHandleFor(context),
+//                              sliver: builtExpandedHeader2(context),
+//                            ),
+//                        ];
+//                      },
+//                      body: Builder(builder: (context) {
+                      CustomScrollView(
+                    controller: _scroller,
+                    slivers: [
+//                        SliverOverlapInjector(
+//                          // This is the flip side of the SliverOverlapAbsorber
+//                          // above.
+//                          handle:
+//                              NestedScrollView.sliverOverlapAbsorberHandleFor(
+//                                  context),
+//                        ),
+
+                      builtExpandedHeader(context),
+                      if (widget.pinFirst) builtPinnedHeader(context),
+//                      SliverOverlapInjector(
+//                        handle: _h1Handle,
+//                      ),
+
+                      SliverFillRemaining(
+                        hasScrollBody: false,
+                        fillOverscroll: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: widget.backgroundColor,
+                              borderRadius: _theme.borderRadius),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _builtExpandedSticky ??= _buildSticky(
+                                  ExpandingCardState.expanded,
+                                  startIndex: widget.pinFirst == true ? 1 : 0,
+                                  animation: null),
+                              _buildMiddleSectionNoInset(
+                                  context, ExpandingCardState.expanded),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
+//                        );
+//                      }),
                   ),
-                  if (builtExpandedFooter != null) builtExpandedFooter(context),
-                ],
-              ),
-            );
-          }),
-          ExpandingCardState.expanded,
-          null,
-        ),
+                ),
+                if (builtExpandedFooter != null && widget.footer != null)
+                  builtExpandedFooter(context),
+              ],
+            ),
+          );
+        }),
+        ExpandingCardState.expanded,
+        null,
       ),
     );
     return widget.expandedWrapper != null
@@ -453,9 +682,9 @@ class _ExpandingCardState extends State<ExpandingCard>
           if (widget.onCardTap != null) {
             widget.onCardTap(context, (context) => _buildExpandedPage(context));
           } else {
-            _pushedTo =
+            _sourceNavigator =
                 Navigator.of(context, rootNavigator: widget.useRootNavigator);
-            _pushedTo.push(PageRouteBuilder(
+            _sourceNavigator.push(PageRouteBuilder(
               pageBuilder: (BuildContext context, Animation<double> animation,
                   Animation<double> secondaryAnimation) {
                 return _expandedPage ??= _buildExpandedPage(context);
@@ -466,6 +695,7 @@ class _ExpandingCardState extends State<ExpandingCard>
               transitionDuration:
                   ExpandingCard.kDefaultTransitionDuration * dur,
               opaque: false,
+              barrierColor: Colors.black12,
               fullscreenDialog: false,
               maintainState: true,
             ));
@@ -502,11 +732,7 @@ class _ExpandingCardState extends State<ExpandingCard>
 
   Widget _buildFooter(
       BuildContext context, Animation<double> anim, ExpandingCardState _state) {
-    if (widget.footer == null) return null;
-    return ClipRRect(
-      borderRadius: _theme.borderRadius.bottom,
-      child: widget.footer,
-    );
+    return widget.footer;
   }
 
   Widget _build(dynamic widgetOrBuilder, BuildContext context) {
@@ -544,7 +770,7 @@ class _ExpandingCardState extends State<ExpandingCard>
 //  }
 //}
 
-extension _BorderRadiusExt on BorderRadius {
+extension BorderRadiusExt on BorderRadius {
   BorderRadius get top {
     return BorderRadius.only(topLeft: this.topLeft, topRight: this.topRight);
   }

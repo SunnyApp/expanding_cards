@@ -1,29 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
-class ExpandingCardRoute<T> extends CupertinoPageRoute<T> {
-  bool _opaque = true;
-
-  bool get opaque {
-    if (_opaque) {
-      _opaque = false;
-      return true;
-    }
-    return _opaque;
-  }
-
+class ExpandingCardRoute<T> extends TransitionRoute<T> {
+  final Duration transitionDuration;
+  final WidgetBuilder builder;
   ExpandingCardRoute({
-    @required WidgetBuilder builder,
+    @required this.builder,
     String title,
     String name,
     RouteSettings settings,
     bool maintainState = true,
     bool fullscreenDialog = false,
-  }) : super(
-          builder: builder,
-          title: title,
-          settings: settings,
-          maintainState: maintainState,
-          fullscreenDialog: fullscreenDialog,
-        );
+    @required this.transitionDuration,
+  }) : super(settings: RouteSettings(name: name));
+
+  @override
+  Iterable<OverlayEntry> createOverlayEntries() sync* {
+    yield OverlayEntry(builder: this.builder, maintainState: false);
+  }
+
+  @override
+  bool get opaque => false;
 }

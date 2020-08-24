@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  background_app_bar: ^1.0.2
   sunny_dart: ^0.5.8
   provider: ^4.3.2
   matrix4_transform: ^1.1.4

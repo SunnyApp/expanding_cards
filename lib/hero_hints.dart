@@ -85,20 +85,38 @@ extension HeroBarWidgets on Iterable<HeroBarWidget> {
     return this.orEmpty().where((widget) => widget.collapsedHeight > 0);
   }
 
-  Widget get collapsedColumn {
-    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+  Widget collapsedColumn(bool constrained) {
+    return _maybeColumn([
       for (final w in this.orEmpty())
         if (w.collapsedHeight > 0)
-          SizedBox(height: w.collapsedHeight, child: w.child),
+          if (constrained)
+            SizedBox(height: w.collapsedHeight, child: w.child)
+          else
+            w.child,
     ]);
   }
 
-  Widget get expandedColumn {
-    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+  Widget expandedColumn(bool constrained) {
+    return _maybeColumn([
       for (final w in this.orEmpty())
         if (w.expandedHeight > 0)
-          SizedBox(height: w.expandedHeight, child: w.child),
+          if (constrained)
+            SizedBox(height: w.expandedHeight, child: w.child)
+          else
+            w.child,
     ]);
+  }
+
+  Widget _maybeColumn(List<Widget> widgets) {
+    switch (widgets.length) {
+      case 0:
+        return SizedBox(height: 0, width: 0);
+      case 1:
+        return widgets.first;
+      default:
+        return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch, children: widgets);
+    }
   }
 
   Size get collapsedHeight {
@@ -106,7 +124,8 @@ extension HeroBarWidgets on Iterable<HeroBarWidget> {
   }
 }
 
-class HeroBarWidget extends StatelessWidget {
+class HeroBarWidget extends StatelessWidget
+    implements ObstructingPreferredSizeWidget {
   final Widget child;
   final double expandedHeight;
   final double collapsedHeight;
@@ -156,6 +175,14 @@ class HeroBarWidget extends StatelessWidget {
       return SizedBox(height: h, child: child);
     }
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(expandedHeight);
+
+  @override
+  bool shouldFullyObstruct(BuildContext context) {
+    return true;
+  }
 }
 
 /// A bar (top or bottom) that knows how to resize during hero transition
@@ -165,16 +192,19 @@ class HeroBar extends StatefulWidget
   final Size preferredSize;
   final Size expandedSize;
   final bool isExpanding;
+  final bool skipConstraints;
   final List<HeroBarWidget> children;
   final HeroHintsBuilder transition;
 
   HeroBar._({
     Key key,
     @required List<HeroBarWidget> children,
+    @required bool skipConstraints,
     HeroHintsBuilder transition,
   }) : this.__(
             children: children,
             key: key,
+            skipConstraints: skipConstraints,
             transition: transition,
             preferredSize: children.collapsedHeight,
             expandedSize: children.expandedHeight);
@@ -182,7 +212,8 @@ class HeroBar extends StatefulWidget
   HeroBar.__({
     Key key,
     @required this.children,
-    this.transition,
+    @required this.transition,
+    @required this.skipConstraints,
     this.preferredSize,
     this.expandedSize,
   })  : assert(children != null),
@@ -193,40 +224,60 @@ class HeroBar extends StatefulWidget
       {Key key,
       @required Widget child,
       HeroHintsBuilder transition,
+      bool skipConstraints,
       @required double height,
       double expandedHeight})
-      : this._(key: key, transition: transition, children: [
-          HeroBarWidget.expanding(
-            child: child,
-            collapsedHeight: height,
-            expandedHeight: expandedHeight ?? height,
-          )
-        ]);
+      : this._(
+            key: key,
+            transition: transition,
+            skipConstraints: skipConstraints,
+            children: [
+              HeroBarWidget.expanding(
+                child: child,
+                collapsedHeight: height,
+                expandedHeight: expandedHeight ?? height,
+              )
+            ]);
 
   HeroBar.stacked({
     Key key,
     @required List<HeroBarWidget> children,
+    bool skipConstraints,
     HeroHintsBuilder transition,
-  }) : this._(children: children, transition: transition, key: key);
+  }) : this._(
+            children: children,
+            skipConstraints: skipConstraints,
+            transition: transition,
+            key: key);
 
   @override
   bool shouldFullyObstruct(BuildContext context) {
     return true;
   }
 
+  Widget _constrained(HeroAnimation heroInfo) {
+    final state = heroInfo.state;
+    final column = state.isCollapsed
+        ? children.collapsedColumn(skipConstraints != true)
+        : children.expandedColumn(skipConstraints != true);
+    if (skipConstraints == true) {
+      return column;
+    }
+    return state.isCollapsed
+        ? SizedBox(
+            height: preferredSize.height,
+            child: column,
+          )
+        : SizedBox(
+            height: expandedSize.height,
+            child: column,
+          );
+  }
+
   @override
   Widget buildCard(BuildContext context, HeroAnimation heroInfo) {
-    final state = heroInfo.state;
     if (heroInfo.animation == null) {
-      return state.isCollapsed
-          ? SizedBox(
-              height: preferredSize.height,
-              child: children.collapsedColumn,
-            )
-          : SizedBox(
-              height: expandedSize.height,
-              child: children.expandedColumn,
-            );
+      return _constrained(heroInfo);
     } else {
       return AnimatedBuilder(
         builder: (BuildContext context, Widget child) {
