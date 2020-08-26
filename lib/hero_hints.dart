@@ -29,6 +29,12 @@ class HeroAnimation {
   final ExpandingCardState state;
 
   const HeroAnimation(this.animation, this.state);
+  const HeroAnimation.expanded()
+      : this.state = ExpandingCardState.expanded,
+        animation = null;
+  const HeroAnimation.collapsed()
+      : this.state = ExpandingCardState.collapsed,
+        animation = null;
 
   factory HeroAnimation.of(BuildContext context) {
     try {
@@ -52,6 +58,14 @@ class HeroAnimation {
 
   @override
   int get hashCode => animation.hashCode ^ state.hashCode;
+
+  Widget provide({Widget child}) {
+    return Provider.value(
+      value: this,
+      updateShouldNotify: (a, b) => a != b,
+      child: child,
+    );
+  }
 }
 
 class _HeroHints extends StatelessWidget with HeroHintsProviderMixin {
@@ -296,6 +310,10 @@ class HeroBar extends StatefulWidget
         animation: heroInfo.animation,
       );
     }
+  }
+
+  Widget buildUnconstrained(BuildContext context) {
+    return children.expandedColumn(skipConstraints != true);
   }
 
   @override

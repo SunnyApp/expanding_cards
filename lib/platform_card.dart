@@ -46,8 +46,12 @@ class PlatformCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = this.theme ?? PlatformCardTheme.of(context);
     Widget widget;
-    if (!kIsWeb && isIOS == true) {
-      final iosCenter = Container(
+    if (kIsWeb || isIOS == true) {
+      final inner = shouldClip == true
+          ? ClipRRect(
+              borderRadius: borderRadius ?? theme.borderRadius, child: child)
+          : child;
+      widget = Container(
         margin: margin ?? theme.margin,
         padding: padding ?? theme.padding,
         alignment: AlignmentDirectional.centerStart,
@@ -55,13 +59,8 @@ class PlatformCard extends StatelessWidget {
             color: color ?? theme.cardColor,
             borderRadius: borderRadius ?? theme.borderRadius,
             boxShadow: useShadow ? shadow ?? theme.boxShadow : null),
-        child: child,
+        child: inner,
       );
-      widget = shouldClip == true
-          ? ClipRRect(
-              borderRadius: borderRadius ?? theme.borderRadius,
-              child: iosCenter)
-          : iosCenter;
     } else {
       widget = Card(
           margin: margin ?? theme.margin,
