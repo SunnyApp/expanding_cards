@@ -196,7 +196,7 @@ class _TestExpandingCard extends StatelessWidget {
           alignment: Alignment.center,
         ),
       ),
-      alwaysShown: [
+      alwaysShown: (context) => [
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: HeroText(

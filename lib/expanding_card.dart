@@ -34,6 +34,12 @@ typedef HeaderBuilder = Widget Function(
 typedef ExpandedCardWrapper = Widget Function(
     BuildContext context, Widget child);
 
+typedef WidgetListGetter = List<Widget> Function(BuildContext context);
+
+typedef WidgetGetter = Widget Function(BuildContext context);
+typedef RouteCreator = Route Function(
+    BuildContext context, WidgetGetter child, double distance);
+
 /// Displays the trip with an item or something else
 ///
 class ExpandingCard extends StatefulWidget {
@@ -58,7 +64,7 @@ class ExpandingCard extends StatefulWidget {
   final ObstructingPreferredSizeWidget preHeader;
 
   /// A list of elements that are always displayed at the top of the card
-  final List<Widget> alwaysShown;
+  final WidgetListGetter alwaysShown;
 
   /// A unique id that identifies this card from otherss
   final String discriminator;
@@ -72,6 +78,9 @@ class ExpandingCard extends StatefulWidget {
 
   /// Whether to show a close button
   final bool showClose;
+
+  /// Allows customization of RouteCreator
+  final RouteCreator buildRoute;
 
   /// Called when the collapsed card is tapped.  By default, this will
   /// expand the card.  If you need to override this behavior, make sure to
@@ -122,6 +131,7 @@ class ExpandingCard extends StatefulWidget {
     this.isExpanded,
     this.theme,
     this.headerTitle,
+    this.buildRoute,
     this.discriminator,
     this.onCardTap,
     this.pinFirst = false,
@@ -208,7 +218,6 @@ class _ExpandingCardState extends State<ExpandingCard>
   NavigatorState _sourceNavigator;
 
   MediaQueryData _mq;
-  bool _isDown = false;
 
   SliverOverlapAbsorberHandle _handle;
   SliverOverlapAbsorberHandle _h1Handle;
@@ -277,7 +286,7 @@ class _ExpandingCardState extends State<ExpandingCard>
   }
 
   Widget builtPinnedHeader(BuildContext context) {
-    final firstWidget = widget.alwaysShown.first;
+    final firstWidget = widget.alwaysShown(context).first;
     double height;
     if (firstWidget is HeroBar) {
       height = firstWidget.expandedSize.height;
@@ -514,7 +523,7 @@ class _ExpandingCardState extends State<ExpandingCard>
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   if (widget.header != null) builtCollapsedHeader,
-                  ...?widget?.alwaysShown,
+                  ...?widget?.alwaysShown(context),
                   _buildBody(context, _cardState, animation),
                 ],
               )),
@@ -533,7 +542,7 @@ class _ExpandingCardState extends State<ExpandingCard>
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            for (final headerWidget in widget.alwaysShown.orEmpty())
+            for (final headerWidget in widget.alwaysShown(context).orEmpty())
               if (count++ >= startIndex)
                 if (count == 1)
                   Container(
@@ -555,7 +564,7 @@ class _ExpandingCardState extends State<ExpandingCard>
       color: Colors.transparent,
       child: _wrapHero(
         Builder(builder: (context) {
-          final mq = MediaQuery.of(context);
+//          final mq = MediaQuery.of(context);
           return CupertinoPageScaffold(
             backgroundColor: widget.backgroundColor,
             child: Stack(
@@ -684,21 +693,30 @@ class _ExpandingCardState extends State<ExpandingCard>
           } else {
             _sourceNavigator =
                 Navigator.of(context, rootNavigator: widget.useRootNavigator);
-            _sourceNavigator.push(PageRouteBuilder(
-              pageBuilder: (BuildContext context, Animation<double> animation,
-                  Animation<double> secondaryAnimation) {
-                return _expandedPage ??= _buildExpandedPage(context);
-              },
-              transitionsBuilder: (context, a1, a2, widget) {
-                return widget;
-              },
-              transitionDuration:
-                  ExpandingCard.kDefaultTransitionDuration * dur,
-              opaque: false,
-              barrierColor: Colors.black12,
-              fullscreenDialog: false,
-              maintainState: true,
-            ));
+
+            final routeCreator = widget.buildRoute ??
+                ((context, child, distance) {
+                  return PageRouteBuilder(
+                    pageBuilder: (BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation) {
+                      return child(context);
+                    },
+                    transitionsBuilder: (context, a1, a2, widget) {
+                      return widget;
+                    },
+                    transitionDuration:
+                        ExpandingCard.kDefaultTransitionDuration * distance,
+                    opaque: false,
+                    barrierColor: Colors.black12,
+                    fullscreenDialog: false,
+                    maintainState: true,
+                  );
+                });
+            final buildExpandedWidget = (BuildContext context) =>
+                _expandedPage ??= _buildExpandedPage(context);
+            _sourceNavigator.push(
+                routeCreator(context, buildExpandedWidget, dur.toDouble()));
           }
         },
         child: card,
