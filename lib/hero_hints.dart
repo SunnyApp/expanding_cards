@@ -144,6 +144,48 @@ class HeroBarWidget extends StatelessWidget
   final double expandedHeight;
   final double collapsedHeight;
 
+  Animation<double> sizeFactor(Animation<double> driver, bool isForward) {
+    if (driver == null) {
+      return kAlwaysCompleteAnimation;
+    }
+    return hides
+        ? driver.drive(Tween(begin: 1, end: 0))
+        : driver.drive(Tween(
+            end: isForward
+                ? (collapsedHeight / expandedHeight)
+                : (expandedHeight / collapsedHeight),
+            begin: 1,
+          ));
+  }
+
+  bool get hides {
+    return expandedHeight == 0.0 || collapsedHeight == 0.0;
+  }
+
+  Widget animate(HeroAnimation heroInfo) {
+    final animation = heroInfo.animation;
+    final direction = heroInfo.state;
+    return hides
+        ? SizeTransition(
+            sizeFactor: sizeFactor(animation, direction.isCollapsed),
+            child: child,
+          )
+        : AnimatedBuilder(
+            builder: (BuildContext context, Widget child) {
+              return SizedBox(
+                height: lerpDouble(
+                  collapsedHeight,
+                  expandedHeight,
+                  heroInfo.animation.value,
+                ),
+                child: child,
+              );
+            },
+            child: child,
+            animation: heroInfo.animation,
+          );
+  }
+
   const HeroBarWidget.fixed({
     Key key,
     @required this.child,
@@ -159,11 +201,12 @@ class HeroBarWidget extends StatelessWidget
     @required this.expandedHeight,
   }) : super(key: key);
 
-  const HeroBarWidget.collapsed({
+  HeroBarWidget.collapsed({
     Key key,
-    @required this.child,
+    @required Widget child,
     @required double height,
-  })  : collapsedHeight = height,
+  })  : child = SizedBox(height: height, child: child),
+        collapsedHeight = height,
         expandedHeight = 0.0,
         super(key: key);
 
@@ -180,15 +223,15 @@ class HeroBarWidget extends StatelessWidget
     return child;
   }
 
-  Widget lerp(double value) {
-    /// Wrap a sized box between collapsed and expanded height.
-    if (collapsedHeight == expandedHeight) {
-      return SizedBox(height: collapsedHeight, child: child);
-    } else {
-      final h = lerpDouble(collapsedHeight, expandedHeight, value);
-      return SizedBox(height: h, child: child);
-    }
-  }
+  // Widget lerp(double value) {
+  //   /// Wrap a sized box between collapsed and expanded height.
+  //   if (collapsedHeight == expandedHeight) {
+  //     return SizedBox(height: collapsedHeight, child: child);
+  //   } else {
+  //     final h = lerpDouble(collapsedHeight, expandedHeight, value);
+  //     return SizedBox(height: h, child: child);
+  //   }
+  // }
 
   @override
   Size get preferredSize => Size.fromHeight(expandedHeight);
@@ -293,21 +336,12 @@ class HeroBar extends StatefulWidget
     if (heroInfo.animation == null) {
       return _constrained(heroInfo);
     } else {
-      return AnimatedBuilder(
-        builder: (BuildContext context, Widget child) {
-          return SizedBox(
-            height: lerpDouble(preferredSize.height, expandedSize.height,
-                heroInfo.animation.value),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                for (final w in children) w.lerp(heroInfo.animation.value),
-              ],
-            ),
-          );
-        },
-        animation: heroInfo.animation,
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          for (final w in children) w.animate(heroInfo),
+        ],
       );
     }
   }
