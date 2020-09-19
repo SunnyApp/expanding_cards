@@ -2,6 +2,7 @@ import 'package:expanding_cards/expanding_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:logging_config/logging_config.dart';
+import 'package:sunny_core_widgets/platform_card_theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -179,9 +180,7 @@ class _TestExpandingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpandingCard(
       backgroundColor: Colors.white,
-      theme: PlatformCardTheme.ofRadius(
-        radiusAmount: 12,
-      ),
+      theme: PlatformCardTheme.ofRadius(radiusAmount: 12),
       header: HeroBar(
         height: 135,
         expandedHeight: 200,

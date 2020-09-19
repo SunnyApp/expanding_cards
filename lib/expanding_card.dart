@@ -1,12 +1,12 @@
-import 'package:expanding_cards/platform_card.dart';
-import 'package:expanding_cards/platform_card_theme.dart';
 import 'package:expanding_cards/resizing_pinned_header.dart';
-import 'package:expanding_cards/taps.dart';
 import 'package:expanding_cards/tweens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
+import 'package:sunny_core_widgets/platform_card.dart';
+import 'package:sunny_core_widgets/platform_card_theme.dart';
+import 'package:sunny_core_widgets/sunny_core_widgets.dart';
 import 'package:sunny_dart/sunny_dart.dart';
 
 import 'hero_hints.dart';
@@ -679,8 +679,8 @@ class _ExpandingCardState extends State<ExpandingCard>
     /// We only want gestures when collapsed
     final card = _buildCollapsedCard(_cardState, animation);
     if (_cardState == ExpandingCardState.collapsed) {
-      return TapHandler(
-        pressScale: 0.97,
+      return Tappable(
+        pressScale: Tappable.defaultScale,
         duration: 100.ms,
         pressOpacity: null,
         onTap: (context) async {
