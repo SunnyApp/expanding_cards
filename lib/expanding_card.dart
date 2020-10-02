@@ -508,10 +508,12 @@ class _ExpandingCardState extends State<ExpandingCard>
   Widget _buildCollapsedCard(ExpandingCardState _cardState,
       [Animation<double> animation]) {
     return PlatformCard(
-      color: widget.backgroundColor,
-      theme: _theme,
-      margin: EdgeInsets.zero,
-      padding: EdgeInsets.zero,
+      args: PlatformCardArgs(
+        color: widget.backgroundColor,
+        theme: _theme,
+        margin: EdgeInsets.zero,
+        padding: EdgeInsets.zero,
+      ),
       child: Stack(
         alignment: Alignment.bottomCenter,
         fit: StackFit.passthrough,
