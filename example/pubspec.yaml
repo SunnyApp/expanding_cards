@@ -32,6 +32,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+dependency_overrides:
+  sunny_sdk_core:
+    path: ../../sunny_sdk_core
+  sunny_core_widgets:
+    path: ../../sunny_core_widgets
+  sunny_forms:
+    path: ../../sunny_forms
+  waypoints:
+    path: ../../sunny_entities/waypoints
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
