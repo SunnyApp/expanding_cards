@@ -11,9 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
   background_app_bar: ^1.0.2
-  sunny_dart: ^0.5.8+2
+  sunny_dart: ^0.5.8+3
   provider: ^4.3.2+2
-  matrix4_transform: ^1.1.5
+  matrix4_transform: ^1.1.6
   sunny_core_widgets:
     path: ../sunny_core_widgets
 
@@ -22,14 +22,13 @@ dev_dependencies:
     sdk: flutter
 
 dependency_overrides:
-  sunny_sdk_core:
-    path: ../sunny_sdk_core
   sunny_core_widgets:
     path: ../sunny_core_widgets
-  sunny_forms:
-    path: ../sunny_forms
-  waypoints:
-    path: ../sunny_entities/waypoints
+
+#  sunny_forms:
+#    path: ../sunny_forms
+#  waypoints:
+#    path: ../sunny_entities/waypoints
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
