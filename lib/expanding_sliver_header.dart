@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 /// The delegate that is provided to [ExpandingSliverPersistentHeader].
 abstract class ExpandingSliverPersistentHeaderDelegate {

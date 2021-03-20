@@ -141,7 +141,9 @@ class _DragToShrinkState extends State<DragToShrink>
           if (scrolled is ScrollEndNotification) {
             if (scrolled.dragDetails != null) {
               _runAnimation(
-                  scrolled.dragDetails?.velocity?.pixelsPerSecond, _scale);
+                  scrolled.dragDetails?.velocity.pixelsPerSecond ??
+                      Offset(0, 0),
+                  _scale);
             }
             return false;
           }
@@ -162,7 +164,7 @@ class _DragToShrinkState extends State<DragToShrink>
           if (_offset >= _stretchOffset) {
             if (widget.onStretch != null) {
               _processingStretch = true;
-              widget.onStretch!(context)?.then((shouldContinue) {
+              widget.onStretch!(context).then((shouldContinue) {
                 _processingStretch = !shouldContinue;
               });
             }

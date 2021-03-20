@@ -3,20 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="9065c72d-40f4-4712-89c2-44c2ba2a5990" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expanding_cards.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expanding_cards.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/test/widget_test.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/drag_to_shrink.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/drag_to_shrink.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/expanding_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/expanding_card.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/expanding_card_route.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/expanding_card_route.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/expanding_sliver_header.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/expanding_sliver_header.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/hero_hints.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hero_hints.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hero_text.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hero_text.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/resizing_pinned_header.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/resizing_pinned_header.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/resizing_pinned_header.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/tweens.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tweens.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +58,6 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="true" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -88,19 +84,30 @@
       <workItem from="1615827322387" duration="626000" />
       <workItem from="1615832440295" duration="5000" />
       <workItem from="1616225414202" duration="2791000" />
-      <workItem from="1616273833056" duration="501000" />
+      <workItem from="1616273833056" duration="1325000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/expanding_card.dart</url>
-          <line>408</line>
+          <line>407</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>

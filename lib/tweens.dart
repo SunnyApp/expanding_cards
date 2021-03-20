@@ -24,7 +24,7 @@ class CustomRectTween extends RectTween {
     );
   }
 
-  double? lerpDouble(num a, num b, double t) {
+  double? lerpDouble(num? a, num? b, double t) {
     if (a == null && b == null) return null;
     a ??= 0.0;
     b ??= 0.0;
@@ -63,7 +63,8 @@ final customSprungFlipped = customSprung.flipped;
 final frontLoaded = Interval(0, 1, curve: Curves.linear);
 
 class OvershootingRectTween extends RectTween {
-  OvershootingRectTween.ofPosition({required this.begin, required this.end, Curve? curve})
+  OvershootingRectTween.ofPosition(
+      {required this.begin, required this.end, Curve? curve})
       : heightTween = Tween(begin: begin.height, end: end.height),
         widthTween = Tween(begin: begin.width, end: end.width),
         topTween = Tween(begin: begin.topLeft, end: end.topLeft),

@@ -1,11 +1,10 @@
-import 'package:expanding_cards/resizing_pinned_header.dart';
 import 'package:expanding_cards/tweens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
-import 'package:dartxx/dartxx.dart';
+import 'package:sunny_essentials/slivers/resizing_pinned_header.dart';
 import 'package:sunny_essentials/sunny_essentials.dart';
 
 import 'hero_hints.dart';
@@ -73,7 +72,7 @@ class ExpandingCard extends StatefulWidget {
   final PlatformCardTheme? theme;
 
   /// The distance to pull before the card collapses
-  final double dragToCloseThreshold;
+  final double? dragToCloseThreshold;
 
   /// Whether to show a close button
   final bool showClose;
@@ -302,7 +301,7 @@ class _ExpandingCardState extends State<ExpandingCard>
 //          stretchTriggerOffset: 50,
 //        ),
         child: firstWidget,
-        builder: (size, ratio, child) => child,
+        builder: (size, ratio, child) => child ?? const SizedBox(),
       ),
     );
   }
@@ -392,7 +391,7 @@ class _ExpandingCardState extends State<ExpandingCard>
           onStretchTrigger: () async {
             Future.microtask(() => pushedTo(context).pop(true));
           },
-          stretchTriggerOffset: widget.dragToCloseThreshold,
+          stretchTriggerOffset: widget.dragToCloseThreshold ?? 0,
           stretch: widget.dragToCloseThreshold != null,
         );
       },
@@ -525,7 +524,7 @@ class _ExpandingCardState extends State<ExpandingCard>
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   if (widget.header != null) builtCollapsedHeader,
-                  ...?widget?.alwaysShown!(context),
+                  ...widget.alwaysShown!(context),
                   _buildBody(context, _cardState, animation)!,
                 ],
               )),
@@ -661,8 +660,7 @@ class _ExpandingCardState extends State<ExpandingCard>
 //                      }),
                   ),
                 ),
-                if (builtExpandedFooter != null && widget.footer != null)
-                  builtExpandedFooter(context)!,
+                if (widget.footer != null) builtExpandedFooter(context)!,
               ],
             ),
           );
@@ -691,7 +689,8 @@ class _ExpandingCardState extends State<ExpandingCard>
           final num dur = (pb.dy / 400.0).clamp(0.8, 1.5);
           log.info("Dur $dur");
           if (widget.onCardTap != null) {
-            widget.onCardTap!(context, (context) => _buildExpandedPage(context));
+            widget.onCardTap!(
+                context, (context) => _buildExpandedPage(context));
           } else {
             _sourceNavigator =
                 Navigator.of(context, rootNavigator: widget.useRootNavigator);
@@ -746,12 +745,12 @@ class _ExpandingCardState extends State<ExpandingCard>
   double? get _headerHeightExpanded {
     final _header = widget.header;
     return _header is HeroBar
-        ? _header.expandedSize?.height ?? _header.preferredSize?.height
-        : _header?.preferredSize?.height;
+        ? _header.expandedSize?.height ?? _header.preferredSize.height
+        : _header?.preferredSize.height;
   }
 
-  Widget? _buildFooter(
-      BuildContext context, Animation<double>? anim, ExpandingCardState _state) {
+  Widget? _buildFooter(BuildContext context, Animation<double>? anim,
+      ExpandingCardState _state) {
     return widget.footer;
   }
 

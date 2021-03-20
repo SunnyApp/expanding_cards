@@ -50,13 +50,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  buffer:
-    dependency: transitive
-    description:
-      name: buffer
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.0"
   build:
     dependency: transitive
     description:
@@ -176,13 +169,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
-  collection_diff:
-    dependency: transitive
-    description:
-      name: collection_diff
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3+5"
   convert:
     dependency: transitive
     description:
@@ -225,13 +211,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.5-nullsafety.4"
-  dio2:
-    dependency: transitive
-    description:
-      name: dio2
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.0-nullsafety"
   equatable:
     dependency: transitive
     description:
@@ -245,7 +224,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.4.4"
+    version: "0.4.4+1"
   fake_async:
     dependency: transitive
     description:
@@ -267,48 +246,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.0"
-  firebase_auth:
-    dependency: transitive
-    description:
-      name: firebase_auth
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
-  firebase_auth_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_auth_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.0"
-  firebase_auth_web:
-    dependency: transitive
-    description:
-      name: firebase_auth_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
-  firebase_core:
-    dependency: transitive
-    description:
-      name: firebase_core
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
-  firebase_core_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_core_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.0"
-  firebase_core_web:
-    dependency: transitive
-    description:
-      name: firebase_core_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   fixnum:
     dependency: transitive
     description:
@@ -365,11 +302,6 @@ packages:
     version: "3.3.2+1"
   flutter_test:
     dependency: "direct dev"
-    description: flutter
-    source: sdk
-    version: "0.0.0"
-  flutter_web_plugins:
-    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -485,13 +417,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.10"
-  material_segmented_control:
-    dependency: transitive
-    description:
-      name: material_segmented_control
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0-nullsafety.1"
   matrix4_transform:
     dependency: transitive
     description:
@@ -513,13 +438,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  modal_bottom_sheet:
-    dependency: transitive
-    description:
-      name: modal_bottom_sheet
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   nested:
     dependency: transitive
     description:
@@ -590,20 +508,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.11.0"
-  permission_handler:
-    dependency: transitive
-    description:
-      name: permission_handler
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.1.1"
-  permission_handler_platform_interface:
-    dependency: transitive
-    description:
-      name: permission_handler_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.1"
   petitparser:
     dependency: transitive
     description:
@@ -611,13 +515,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
-  pfile:
-    dependency: transitive
-    description:
-      name: pfile
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1-nullsafety.3"
   platform:
     dependency: transitive
     description:
@@ -654,7 +551,7 @@ packages:
     source: hosted
     version: "4.1.1"
   provider:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: provider
       url: "https://pub.dartlang.org"
@@ -688,13 +585,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0-nullsafety.0"
-  responsive_builder:
-    dependency: transitive
-    description:
-      name: responsive_builder
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0-nullsafety.1"
   rxdart:
     dependency: transitive
     description:
@@ -777,13 +667,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  sunny_core_widgets:
-    dependency: "direct main"
-    description:
-      path: "../../sunny_core_widgets"
-      relative: true
-    source: path
-    version: "0.0.0"
   sunny_dart:
     dependency: transitive
     description:
@@ -792,26 +675,12 @@ packages:
     source: hosted
     version: "0.8.3+2"
   sunny_essentials:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sunny_essentials
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.4-nullsafety.3"
-  sunny_fluro:
-    dependency: transitive
-    description:
-      name: sunny_fluro
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.8.0-nullsafe.2"
-  sunny_sdk_core:
-    dependency: "direct overridden"
-    description:
-      path: "../../sunny_sdk_core"
-      relative: true
-    source: path
-    version: "2.0.0-nullsafe.16"
   synchronized:
     dependency: transitive
     description:

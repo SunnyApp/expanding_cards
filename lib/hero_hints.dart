@@ -190,7 +190,7 @@ class HeroBarWidget extends StatelessWidget
     Key? key,
     required this.child,
     required double height,
-  })  : expandedHeight = height,
+  })   : expandedHeight = height,
         collapsedHeight = height,
         super(key: key);
 
@@ -205,7 +205,7 @@ class HeroBarWidget extends StatelessWidget
     Key? key,
     required Widget child,
     required double height,
-  })  : child = SizedBox(height: height, child: child),
+  })   : child = SizedBox(height: height, child: child),
         collapsedHeight = height,
         expandedHeight = 0.0,
         super(key: key);
@@ -214,7 +214,7 @@ class HeroBarWidget extends StatelessWidget
     Key? key,
     required this.child,
     required double height,
-  })  : collapsedHeight = 0.0,
+  })   : collapsedHeight = 0.0,
         expandedHeight = height,
         super(key: key);
 
@@ -274,7 +274,7 @@ class HeroBar extends StatefulWidget
     required this.preferredSize,
     this.expandedSize,
   })  : assert(children != null),
-        isExpanding = preferredSize?.height != expandedSize?.height,
+        isExpanding = preferredSize.height != expandedSize?.height,
         super(key: key);
 
   HeroBar(

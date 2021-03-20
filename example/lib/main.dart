@@ -1,8 +1,9 @@
 import 'package:expanding_cards/expanding_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
+import 'package:dartxx/dartxx.dart';
 import 'package:logging_config/logging_config.dart';
-import 'package:sunny_core_widgets/platform_card_theme.dart';
+import 'package:sunny_essentials/sunny_essentials.dart' hide HeroText;
 
 void main() {
   runApp(MyApp());
@@ -18,8 +19,8 @@ class AlbumInfo {
   final String year;
   final String cover;
   final List<String> details;
-  final Color color;
-  final double headerHeight;
+  final Color? color;
+  final double? headerHeight;
 
   const AlbumInfo(
     this.name,
@@ -32,7 +33,7 @@ class AlbumInfo {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<AlbumInfo> _data;
+  late List<AlbumInfo> _data;
   @override
   void initState() {
     super.initState();
@@ -162,17 +163,17 @@ class _TestExpandingCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String imageUrl;
-  final List<Widget> expandedDetailTiles;
-  final Color footerColor;
-  final double headerHeight;
+  final List<Widget>? expandedDetailTiles;
+  final Color? footerColor;
+  final double? headerHeight;
 
   const _TestExpandingCard(
-      {Key key,
-      this.title,
-      this.imageUrl,
+      {Key? key,
+      required this.title,
+      required this.imageUrl,
       this.expandedDetailTiles,
       this.headerHeight,
-      this.subtitle,
+      required this.subtitle,
       this.footerColor})
       : super(key: key);
 
@@ -237,7 +238,7 @@ class _TestExpandingCard extends StatelessWidget {
         if (expandedDetailTiles?.isNotEmpty != true)
           Center(child: Text("Nothing to display!")),
         if (expandedDetailTiles != null)
-          for (final tile in expandedDetailTiles)
+          for (final tile in expandedDetailTiles.orEmptyList())
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
