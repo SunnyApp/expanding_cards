@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
-import 'package:sunny_dart/helpers/logging_mixin.dart';
-import 'package:sunny_dart/sunny_dart.dart';
+import 'package:dartxx/dartxx.dart';
 
 import 'expanding_card.dart';
 
@@ -11,7 +11,7 @@ typedef HeroHintsBuilder = Widget Function(
     BuildContext context, HeroAnimation heroInfo);
 
 abstract class HeroHints extends Widget {
-  const factory HeroHints({Key key, @required HeroHintsBuilder builder}) =
+  const factory HeroHints({Key? key, required HeroHintsBuilder builder}) =
       _HeroHints;
 
   Widget buildCard(BuildContext context, HeroAnimation heroInfo);
@@ -25,7 +25,7 @@ mixin HeroHintsProviderMixin implements HeroHints {
 }
 
 class HeroAnimation {
-  final Animation<double> animation;
+  final Animation<double>? animation;
   final ExpandingCardState state;
 
   const HeroAnimation(this.animation, this.state);
@@ -59,10 +59,10 @@ class HeroAnimation {
   @override
   int get hashCode => animation.hashCode ^ state.hashCode;
 
-  Widget provide({Widget child}) {
+  Widget provide({Widget? child}) {
     return Provider.value(
       value: this,
-      updateShouldNotify: (a, b) => a != b,
+      updateShouldNotify: (dynamic a, dynamic b) => a != b,
       child: child,
     );
   }
@@ -71,12 +71,12 @@ class HeroAnimation {
 class _HeroHints extends StatelessWidget with HeroHintsProviderMixin {
   final HeroHintsBuilder builder;
 
-  const _HeroHints({Key key, @required this.builder}) : super(key: key);
+  const _HeroHints({Key? key, required this.builder}) : super(key: key);
 
   @override
   Widget buildCard(BuildContext context, HeroAnimation info) {
     if (builder == null) {
-      final self = this;
+      final _HeroHints self = this;
       assert(self is HeroWithChild,
           "No child provided to the hero widget builder.");
 
@@ -92,16 +92,16 @@ extension HeroBarWidgets on Iterable<HeroBarWidget> {
   }
 
   Iterable<HeroBarWidget> get expandedWidgets {
-    return this.orEmpty().where((widget) => widget.expandedHeight > 0);
+    return this.where((widget) => widget.expandedHeight > 0);
   }
 
   Iterable<HeroBarWidget> get collapsedWidgets {
-    return this.orEmpty().where((widget) => widget.collapsedHeight > 0);
+    return this.where((widget) => widget.collapsedHeight > 0);
   }
 
   Widget collapsedColumn(bool constrained) {
     return _maybeColumn([
-      for (final w in this.orEmpty())
+      for (final w in this)
         if (w.collapsedHeight > 0)
           if (constrained)
             SizedBox(height: w.collapsedHeight, child: w.child)
@@ -112,7 +112,7 @@ extension HeroBarWidgets on Iterable<HeroBarWidget> {
 
   Widget expandedColumn(bool constrained) {
     return _maybeColumn([
-      for (final w in this.orEmpty())
+      for (final w in this)
         if (w.expandedHeight > 0)
           if (constrained)
             SizedBox(height: w.expandedHeight, child: w.child)
@@ -144,7 +144,7 @@ class HeroBarWidget extends StatelessWidget
   final double expandedHeight;
   final double collapsedHeight;
 
-  Animation<double> sizeFactor(Animation<double> driver, bool isForward) {
+  Animation<double> sizeFactor(Animation<double>? driver, bool isForward) {
     if (driver == null) {
       return kAlwaysCompleteAnimation;
     }
@@ -171,49 +171,49 @@ class HeroBarWidget extends StatelessWidget
             child: child,
           )
         : AnimatedBuilder(
-            builder: (BuildContext context, Widget child) {
+            builder: (BuildContext context, Widget? child) {
               return SizedBox(
                 height: lerpDouble(
                   collapsedHeight,
                   expandedHeight,
-                  heroInfo.animation.value,
+                  heroInfo.animation!.value,
                 ),
                 child: child,
               );
             },
             child: child,
-            animation: heroInfo.animation,
+            animation: heroInfo.animation!,
           );
   }
 
   const HeroBarWidget.fixed({
-    Key key,
-    @required this.child,
-    @required double height,
+    Key? key,
+    required this.child,
+    required double height,
   })  : expandedHeight = height,
         collapsedHeight = height,
         super(key: key);
 
   const HeroBarWidget.expanding({
-    Key key,
-    @required this.child,
-    @required this.collapsedHeight,
-    @required this.expandedHeight,
+    Key? key,
+    required this.child,
+    required this.collapsedHeight,
+    required this.expandedHeight,
   }) : super(key: key);
 
   HeroBarWidget.collapsed({
-    Key key,
-    @required Widget child,
-    @required double height,
+    Key? key,
+    required Widget child,
+    required double height,
   })  : child = SizedBox(height: height, child: child),
         collapsedHeight = height,
         expandedHeight = 0.0,
         super(key: key);
 
   const HeroBarWidget.expanded({
-    Key key,
-    @required this.child,
-    @required double height,
+    Key? key,
+    required this.child,
+    required double height,
   })  : collapsedHeight = 0.0,
         expandedHeight = height,
         super(key: key);
@@ -247,17 +247,17 @@ class HeroBar extends StatefulWidget
     implements ObstructingPreferredSizeWidget, HeroHints {
   @override
   final Size preferredSize;
-  final Size expandedSize;
+  final Size? expandedSize;
   final bool isExpanding;
-  final bool skipConstraints;
+  final bool? skipConstraints;
   final List<HeroBarWidget> children;
-  final HeroHintsBuilder transition;
+  final HeroHintsBuilder? transition;
 
   HeroBar._({
-    Key key,
-    @required List<HeroBarWidget> children,
-    @required bool skipConstraints,
-    HeroHintsBuilder transition,
+    Key? key,
+    required List<HeroBarWidget> children,
+    required bool? skipConstraints,
+    HeroHintsBuilder? transition,
   }) : this.__(
             children: children,
             key: key,
@@ -267,23 +267,23 @@ class HeroBar extends StatefulWidget
             expandedSize: children.expandedHeight);
 
   HeroBar.__({
-    Key key,
-    @required this.children,
-    @required this.transition,
-    @required this.skipConstraints,
-    this.preferredSize,
+    Key? key,
+    required this.children,
+    required this.transition,
+    required this.skipConstraints,
+    required this.preferredSize,
     this.expandedSize,
   })  : assert(children != null),
         isExpanding = preferredSize?.height != expandedSize?.height,
         super(key: key);
 
   HeroBar(
-      {Key key,
-      @required Widget child,
-      HeroHintsBuilder transition,
-      bool skipConstraints,
-      @required double height,
-      double expandedHeight})
+      {Key? key,
+      required Widget child,
+      HeroHintsBuilder? transition,
+      bool? skipConstraints,
+      required double height,
+      double? expandedHeight})
       : this._(
             key: key,
             transition: transition,
@@ -297,10 +297,10 @@ class HeroBar extends StatefulWidget
             ]);
 
   HeroBar.stacked({
-    Key key,
-    @required List<HeroBarWidget> children,
-    bool skipConstraints,
-    HeroHintsBuilder transition,
+    Key? key,
+    required List<HeroBarWidget> children,
+    bool? skipConstraints,
+    HeroHintsBuilder? transition,
   }) : this._(
             children: children,
             skipConstraints: skipConstraints,
@@ -326,7 +326,7 @@ class HeroBar extends StatefulWidget
             child: column,
           )
         : SizedBox(
-            height: expandedSize.height,
+            height: expandedSize!.height,
             child: column,
           );
   }
@@ -356,7 +356,8 @@ class HeroBar extends StatefulWidget
   }
 }
 
-class _HeroBarState extends State<HeroBar> with LoggingMixin {
+class _HeroBarState extends State<HeroBar> {
+  final log = Logger("heroBarState");
   Map<HeroAnimation, Widget> _cached = {};
 
   @override

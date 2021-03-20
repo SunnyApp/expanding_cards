@@ -6,8 +6,8 @@ import 'package:flutter/physics.dart';
 
 class CustomRectTween extends RectTween {
   CustomRectTween({this.begin, this.end}) : super(begin: begin, end: end);
-  final Rect begin;
-  final Rect end;
+  final Rect? begin;
+  final Rect? end;
 
   @override
   Rect lerp(double t) {
@@ -15,16 +15,16 @@ class CustomRectTween extends RectTween {
     //any curve can be applied here e.g. Curve.elasticOut.transform(t);
     final verticalDist = Curves.decelerate.transform(t);
 
-    final top = lerpDouble(begin.top, end.top, t) * verticalDist;
+    final top = lerpDouble(begin!.top, end!.top, t)! * verticalDist;
     return Rect.fromLTRB(
-      lerpDouble(begin.left, end.left, verticalDist),
-      lerpDouble(begin.top, end.top, verticalDist),
-      lerpDouble(begin.right, end.right, verticalDist),
-      lerpDouble(begin.bottom, end.bottom, verticalDist),
+      lerpDouble(begin!.left, end!.left, verticalDist)!,
+      lerpDouble(begin!.top, end!.top, verticalDist)!,
+      lerpDouble(begin!.right, end!.right, verticalDist)!,
+      lerpDouble(begin!.bottom, end!.bottom, verticalDist)!,
     );
   }
 
-  double lerpDouble(num a, num b, double t) {
+  double? lerpDouble(num a, num b, double t) {
     if (a == null && b == null) return null;
     a ??= 0.0;
     b ??= 0.0;
@@ -33,7 +33,7 @@ class CustomRectTween extends RectTween {
 }
 
 class ElastiRectTween extends RectTween {
-  ElastiRectTween.ofPosition({this.begin, this.end})
+  ElastiRectTween.ofPosition({required this.begin, required this.end})
       : heightTween = Tween(begin: begin.height, end: end.height),
         widthTween = Tween(begin: begin.width, end: end.width),
         centerTween = Tween(begin: begin.center, end: end.center)
@@ -63,7 +63,7 @@ final customSprungFlipped = customSprung.flipped;
 final frontLoaded = Interval(0, 1, curve: Curves.linear);
 
 class OvershootingRectTween extends RectTween {
-  OvershootingRectTween.ofPosition({this.begin, this.end, Curve curve})
+  OvershootingRectTween.ofPosition({required this.begin, required this.end, Curve? curve})
       : heightTween = Tween(begin: begin.height, end: end.height),
         widthTween = Tween(begin: begin.width, end: end.width),
         topTween = Tween(begin: begin.topLeft, end: end.topLeft),

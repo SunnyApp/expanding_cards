@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
     <CLASSES>
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/device_info-0.4.2+4" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/get_ip-0.4.0" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/devicelocale-0.3.1" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/flutter_native_timezone-1.0.4" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/libphonenumber-1.0.1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/libphonenumber2-2.0.2+2" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.0" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/sqflite-2.0.0+3" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.0.0" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

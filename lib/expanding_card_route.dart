@@ -5,13 +5,13 @@ class ExpandingCardRoute<T> extends TransitionRoute<T> {
   final Duration transitionDuration;
   final WidgetBuilder builder;
   ExpandingCardRoute({
-    @required this.builder,
-    String title,
-    String name,
-    RouteSettings settings,
+    required this.builder,
+    String? title,
+    String? name,
+    RouteSettings? settings,
     bool maintainState = true,
     bool fullscreenDialog = false,
-    @required this.transitionDuration,
+    required this.transitionDuration,
   }) : super(settings: RouteSettings(name: name));
 
   @override

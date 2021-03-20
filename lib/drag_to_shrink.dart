@@ -23,14 +23,14 @@ Future<bool> _navigatorPop(BuildContext context) async {
 /// directly on the widget or not, the effect is the same.
 class DragToShrink extends StatefulWidget {
   final Widget child;
-  final double stretchOffset;
-  final StretchCallback onStretch;
-  final double maxBorderRadius;
-  final ResizeDecorator resizeDecorator;
+  final double? stretchOffset;
+  final StretchCallback? onStretch;
+  final double? maxBorderRadius;
+  final ResizeDecorator? resizeDecorator;
 
   const DragToShrink({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.stretchOffset,
     this.onStretch,
     this.maxBorderRadius,
@@ -39,8 +39,8 @@ class DragToShrink extends StatefulWidget {
 
   /// When the [stretchOffset] is reached, this view is popped off the Navigator stack
   const DragToShrink.navigatorPop({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.stretchOffset = 100 / 2,
     this.maxBorderRadius,
     this.resizeDecorator,
@@ -53,7 +53,7 @@ class DragToShrink extends StatefulWidget {
 
 class _DragToShrinkState extends State<DragToShrink>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   bool _processingStretch = false;
   static const _maxScaleRange = 1;
   static const _minScaleRange = 0.6;
@@ -66,22 +66,22 @@ class _DragToShrinkState extends State<DragToShrink>
   static const b = _minScaleRange - (a * _minUnitRange);
 
   /// The current scale of the widget
-  double _scale;
+  late double _scale;
 
   /// The current distance the user has underscrolled
   double _offset = 0;
 
   /// How much stretch is allowed before triggering [DragToShrink.onStretch]
-  double _stretchOffset;
+  late double _stretchOffset;
 
   /// The cached child widget, with any decoration
-  Widget _wrapped;
+  Widget? _wrapped;
 
   /// Cached [MediaQuery.sizeAnim] of this widget
-  Size _size;
+  Size? _size;
 
   /// Cached value for the centerPoint, based off [_size]
-  Offset _center;
+  Offset? _center;
 
   @override
   void initState() {
@@ -131,7 +131,7 @@ class _DragToShrinkState extends State<DragToShrink>
   @override
   Widget build(BuildContext context) {
     _size ??= MediaQuery.of(context).size;
-    _center ??= _size.center(Offset.zero);
+    _center ??= _size!.center(Offset.zero);
     return GestureDetector(
       onPanDown: (details) {
         _controller.stop();
@@ -162,7 +162,7 @@ class _DragToShrinkState extends State<DragToShrink>
           if (_offset >= _stretchOffset) {
             if (widget.onStretch != null) {
               _processingStretch = true;
-              widget.onStretch(context)?.then((shouldContinue) {
+              widget.onStretch!(context)?.then((shouldContinue) {
                 _processingStretch = !shouldContinue;
               });
             }

@@ -5,24 +5,25 @@ homepage: https://github.com/SunnyApp/expanding_cards
 
 environment:
   sdk: ">=2.8.0 <3.0.0"
-  flutter: ">=1.10.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  background_app_bar: ^1.0.2
-  sunny_dart: ^0.5.8+3
-  provider: ^4.3.2+2
-  matrix4_transform: ^1.1.6
-  sunny_core_widgets: ^0.1.1+11
+  background_app_bar: ^2.0.0
+  provider: ^5.0.0
+  logging: ^1.0.0
+  dartxx: ^0.4.5-nullsafety.4
+  matrix4_transform: ^2.0.0
+  sunny_essentials: ^0.4.4-nullsafety.3
+#  sunny_core_widgets: ^0.1.1+11
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 dependency_overrides:
-  sunny_core_widgets:
-    path: ../sunny_core_widgets
+#  sunny_core_widgets:
+#    path: ../sunny_core_widgets
 
 #  sunny_forms:
 #    path: ../sunny_forms

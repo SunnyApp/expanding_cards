@@ -2,7 +2,7 @@ import 'package:expanding_cards/expanding_card.dart';
 import 'package:expanding_cards/hero_hints.dart';
 import 'package:flutter/cupertino.dart';
 
-typedef TextBuilder = Text Function(TextStyle style);
+typedef TextBuilder = Text Function(TextStyle? style);
 
 class HeroText extends StatelessWidget
     with HeroHintsProviderMixin
@@ -14,7 +14,7 @@ class HeroText extends StatelessWidget
   final TextStyle endStyle;
 
   HeroText(TextBuilder builder,
-      {Key key, @required this.startStyle, @required this.endStyle})
+      {Key? key, required this.startStyle, required this.endStyle})
       : startText = builder(startStyle),
         endText = builder(endStyle),
         noStyle = builder(null),
