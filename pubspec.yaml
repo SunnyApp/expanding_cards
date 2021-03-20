@@ -1,5 +1,5 @@
 name: expanding_cards
-version: 0.4.4-nullsafety.6
+version: 0.5.1-nullsafety.6
 homepage: https://github.com/SunnyApp/expanding_cards
 description: Cards that expand when you tap on them
 environment: 

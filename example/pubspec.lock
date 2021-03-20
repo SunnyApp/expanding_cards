@@ -217,7 +217,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.4.4-nullsafety.4"
+    version: "0.4.4-nullsafety.6"
   fake_async:
     dependency: transitive
     description:
@@ -673,7 +673,7 @@ packages:
       name: sunny_essentials
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.4-nullsafety.3"
+    version: "0.4.4-nullsafety.4"
   synchronized:
     dependency: transitive
     description:

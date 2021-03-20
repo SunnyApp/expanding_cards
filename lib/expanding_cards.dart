@@ -1,4 +1,4 @@
-library expanding_cards'
+library expanding_cards;
 
 export 'drag_to_shrink.dart';
 export 'expanding_card.dart';
