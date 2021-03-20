@@ -69,9 +69,9 @@ class HeroAnimation {
 }
 
 class _HeroHints extends StatelessWidget with HeroHintsProviderMixin {
-  final HeroHintsBuilder builder;
+  final HeroHintsBuilder? builder;
 
-  const _HeroHints({Key? key, required this.builder}) : super(key: key);
+  const _HeroHints({Key? key, this.builder}) : super(key: key);
 
   @override
   Widget buildCard(BuildContext context, HeroAnimation info) {
@@ -82,7 +82,7 @@ class _HeroHints extends StatelessWidget with HeroHintsProviderMixin {
 
       return (self as HeroWithChild).child;
     }
-    return builder(context, info);
+    return builder!(context, info);
   }
 }
 
@@ -273,8 +273,7 @@ class HeroBar extends StatefulWidget
     required this.skipConstraints,
     required this.preferredSize,
     this.expandedSize,
-  })  : assert(children != null),
-        isExpanding = preferredSize.height != expandedSize?.height,
+  })  : isExpanding = preferredSize.height != expandedSize?.height,
         super(key: key);
 
   HeroBar(

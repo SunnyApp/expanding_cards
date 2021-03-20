@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9065c72d-40f4-4712-89c2-44c2ba2a5990" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/test/widget_test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/drag_to_shrink.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/drag_to_shrink.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/expanding_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/expanding_card.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/expanding_sliver_header.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/expanding_sliver_header.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/hero_hints.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hero_hints.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/resizing_pinned_header.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/tweens.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tweens.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +76,7 @@
       <workItem from="1615827322387" duration="626000" />
       <workItem from="1615832440295" duration="5000" />
       <workItem from="1616225414202" duration="2791000" />
-      <workItem from="1616273833056" duration="1325000" />
+      <workItem from="1616273833056" duration="1947000" />
     </task>
     <servers />
   </component>
@@ -112,5 +104,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

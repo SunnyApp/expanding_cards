@@ -5,7 +5,7 @@ description: Cards that expand when you tap on them
 environment: 
   sdk: '>=2.12.0 <3.0.0'
 dependencies: 
-  background_app_bar: ^2.0.0
+#  background_app_bar: ^2.0.0
   provider: ^5.0.0
   logging: ^1.0.0
   dartxx: ^0.4.5-nullsafety.4
