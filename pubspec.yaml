@@ -9,7 +9,7 @@ dependencies:
   logging: ^1.0.0
   dartxx: ^0.4.5-nullsafety.4
   matrix4_transform: ^2.0.0
-  sunny_essentials: ^0.4.4-nullsafety.3
+  sunny_essentials: ^0.4.4-nullsafety.4
   flutter: 
     sdk: flutter
 dev_dependencies: 

@@ -37,13 +37,6 @@
             </list>
           </value>
         </entry>
-        <entry key="background_app_bar">
-          <value>
-            <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/background_app_bar-2.0.0/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="boolean_selector">
           <value>
             <list>
@@ -808,7 +801,6 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/archive-3.1.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/args-2.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/async-2.5.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/background_app_bar-2.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/boolean_selector-2.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/build-2.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/build_config-0.4.7/lib" />
