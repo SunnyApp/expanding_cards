@@ -1,3 +1,6 @@
+## [0.5.1-nullsafety.7]
+ * Upgrading null-safety version
+
 ## [0.4.4-nullsafety.6]
  * Adding library directive
 
