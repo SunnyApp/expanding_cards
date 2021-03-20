@@ -1,3 +1,6 @@
+## [0.4.4-nullsafety.6]
+ * Adding library directive
+
 ## [0.4.4-nullsafety.5]
  * null-safety 2
 
