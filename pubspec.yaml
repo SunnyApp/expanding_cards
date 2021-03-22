@@ -1,5 +1,5 @@
 name: expanding_cards
-version: 0.5.1-nullsafety.7
+version: 0.6.0
 homepage: https://github.com/SunnyApp/expanding_cards
 description: Cards that expand when you tap on them
 environment: 
@@ -7,9 +7,9 @@ environment:
 dependencies: 
   provider: ^5.0.0
   logging: ^1.0.0
-  dartxx: ^0.4.5-nullsafety.4
+  dartxx: ^0.5.0+2
   matrix4_transform: ^2.0.0
-  sunny_essentials: ^0.4.4-nullsafety.4
+  sunny_essentials: ^0.5.0+1
   flutter: 
     sdk: flutter
 dev_dependencies: 
