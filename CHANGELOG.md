@@ -1,3 +1,6 @@
+## [0.6.0+1]
+ * minor bump
+
 ## [0.5.1-nullsafety.7]
  * Upgrading null-safety version
 
