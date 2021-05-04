@@ -1,3 +1,6 @@
+## [0.6.0+3]
+ * Updating sunny_essentials to 0.6
+
 ## [0.6.0+2]
  * Minor bump
 
