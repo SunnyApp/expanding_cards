@@ -127,13 +127,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  chunked_stream:
-    dependency: transitive
-    description:
-      name: chunked_stream
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.0"
   cli_util:
     dependency: transitive
     description:
@@ -196,14 +189,14 @@ packages:
       name: dartx
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0"
+    version: "0.7.1"
   dartxx:
     dependency: transitive
     description:
       name: dartxx
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.5-nullsafety.4"
+    version: "0.5.0+2"
   equatable:
     dependency: transitive
     description:
@@ -217,7 +210,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.4.4-nullsafety.6"
+    version: "0.6.0+2"
   fake_async:
     dependency: transitive
     description:
@@ -246,13 +239,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  flexidate:
-    dependency: transitive
-    description:
-      name: flexidate
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.5-nullsafety.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -278,21 +264,21 @@ packages:
       name: flutter_degen
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.1-nullsafety.2"
+    version: "0.6.0+3"
   flutter_platform_widgets:
     dependency: transitive
     description:
       name: flutter_platform_widgets
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1-nullsafety.2"
+    version: "1.6.1"
   flutter_screen_scaling:
     dependency: transitive
     description:
       name: flutter_screen_scaling
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.2+1"
+    version: "3.3.2+3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -353,7 +339,7 @@ packages:
       name: info_x
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.4-nullsafety.1"
+    version: "0.5.0+1"
   intl:
     dependency: transitive
     description:
@@ -382,13 +368,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
-  libphonenumber2:
-    dependency: transitive
-    description:
-      name: libphonenumber2
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.2+2"
   logging:
     dependency: "direct main"
     description:
@@ -515,13 +494,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
-  platform_detect2:
-    dependency: transitive
-    description:
-      name: platform_detect2
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.5.0+2"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -660,20 +632,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  sunny_dart:
-    dependency: transitive
-    description:
-      name: sunny_dart
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.3+2"
   sunny_essentials:
     dependency: "direct main"
     description:
       name: sunny_essentials
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.4-nullsafety.4"
+    version: "0.6.0+1"
   synchronized:
     dependency: transitive
     description:

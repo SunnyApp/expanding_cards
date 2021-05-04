@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   cached_network_image: ^3.0.0-nullsafety
-  sunny_essentials: ^0.4.4-nullsafety.3
+  sunny_essentials: ^0.6.0+1
   logging_config: ^0.6.7+6
   logging: ^1.0.0
   expanding_cards:
