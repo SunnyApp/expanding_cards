@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9065c72d-40f4-4712-89c2-44c2ba2a5990" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expanding_cards.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expanding_cards.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sunny_dart/lib/extensions/lang_extensions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../sunny_dart/lib/extensions/lang_extensions.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +78,8 @@
       <workItem from="1615832440295" duration="5000" />
       <workItem from="1616225414202" duration="2791000" />
       <workItem from="1616273833056" duration="3793000" />
-      <workItem from="1635621912699" duration="27000" />
+      <workItem from="1635621912699" duration="59000" />
+      <workItem from="1635627992463" duration="10000" />
     </task>
     <servers />
   </component>

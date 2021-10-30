@@ -7,7 +7,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.1"
+    version: "2.8.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -49,7 +49,7 @@ packages:
       name: charcode
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.3.1"
   clock:
     dependency: transitive
     description:
@@ -178,7 +178,7 @@ packages:
       name: info_x
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0+1"
+    version: "0.8.0+3"
   intl:
     dependency: transitive
     description:
@@ -213,7 +213,7 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.0"
+    version: "1.7.0"
   nested:
     dependency: transitive
     description:
@@ -379,7 +379,7 @@ packages:
       name: sunny_essentials
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0+12"
+    version: "0.8.0+13"
   synchronized:
     dependency: transitive
     description:
@@ -400,7 +400,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.2"
   timeago:
     dependency: transitive
     description:
@@ -414,7 +414,7 @@ packages:
       name: timezone
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0"
+    version: "0.8.0"
   typed_data:
     dependency: transitive
     description:
@@ -458,5 +458,5 @@ packages:
     source: hosted
     version: "0.2.0"
 sdks:
-  dart: ">=2.13.0 <3.0.0"
+  dart: ">=2.14.0 <3.0.0"
   flutter: ">=1.24.0"
