@@ -1,3 +1,6 @@
+## [0.8.0+5]
+ * Prepare for publish
+
 ## [0.6.0+4]
  * Updated deps
 
