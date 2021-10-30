@@ -6,15 +6,15 @@ description: Demonstrates how to use the expanding_cards plugin.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.14.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  cached_network_image: ^3.0.0-nullsafety
-  sunny_essentials: ^0.6.0+1
-  logging_config: ^0.6.7+6
-  logging: ^1.0.0
+  cached_network_image: ^3.1.0
+  sunny_essentials: ^0.8.0+13
+  logging_config: ^0.6.7+7
+  logging: ^1.0.2
   expanding_cards:
     # When depending on this package from a real application you should use:
     #   expanding_cards: ^x.y.z

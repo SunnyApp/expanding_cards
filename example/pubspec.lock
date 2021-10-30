@@ -98,7 +98,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.6.0+4"
+    version: "0.8.0+5"
   fake_async:
     dependency: transitive
     description:
@@ -192,7 +192,7 @@ packages:
       name: info_x
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0+1"
+    version: "0.8.0+3"
   intl:
     dependency: transitive
     description:
@@ -220,7 +220,7 @@ packages:
       name: logging_config
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.7+6"
+    version: "0.6.7+7"
   matcher:
     dependency: transitive
     description:
@@ -407,7 +407,7 @@ packages:
       name: sunny_essentials
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0+12"
+    version: "0.8.0+13"
   synchronized:
     dependency: transitive
     description:
@@ -442,7 +442,7 @@ packages:
       name: timezone
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0"
+    version: "0.8.0"
   typed_data:
     dependency: transitive
     description:
