@@ -26,7 +26,7 @@ typedef ExpandingCardCallback<R> = R Function(
 typedef BuildExpandedCard = Widget Function(BuildContext context);
 
 typedef HeaderBuilder = Widget Function(
-    BuildContext context, ScrollController? scroller, NavigatorState state);
+    BuildContext context, ScrollController scroller, NavigatorState state);
 
 /// Used to decorate the expanded card
 typedef ExpandedCardWrapper = Widget Function(
@@ -401,13 +401,15 @@ class _ExpandingCardState extends State<ExpandingCard>
   NavigatorState pushedTo(BuildContext context) =>
       _sourceNavigator ?? Navigator.of(context);
 
-  Widget? _buildHeaderWidget(BuildContext context, final dynamic widget) {
+  Widget? _buildHeaderWidget(BuildContext context, dynamic widget) {
     if (widget == null) return null;
+
     if (widget is Widget) {
       return widget;
     }
+
     if (widget is HeaderBuilder) {
-      return widget(context, _scroller, pushedTo(context));
+      return widget(context, _scroller!, pushedTo(context));
     }
     throw Exception("Invalid header type.  Must be Widget or HeaderBuilder");
   }

@@ -9,9 +9,9 @@ dependencies:
   logging: ^1.0.2
   matrix4_transform: ^2.0.1
   dartxx: 
-    path: /Users/ericm/sunny/player_rank/packages/dartxx
+    path: /Users/ericm/sunny/trippi_plugins/dartxx
   sunny_essentials: 
-    path: /Users/ericm/sunny/player_rank/packages/sunny_essentials
+    path: /Users/ericm/sunny/trippi_plugins/sunny_essentials
   flutter: 
     sdk: flutter
 dev_dependencies: 
