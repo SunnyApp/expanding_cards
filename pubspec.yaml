@@ -9,9 +9,13 @@ dependencies:
   logging: ^1.0.2
   matrix4_transform: ^2.0.1
   dartxx: 
-    path: /Users/ericm/sunny/trippi_plugins/dartxx
+    git: 
+      url: git@github.com:ericmartineau/dartxx.git
+      ref: trippi_app
   sunny_essentials: 
-    path: /Users/ericm/sunny/trippi_plugins/sunny_essentials
+    git: 
+      url: git@github.com:ericmartineau/sunny_essentials.git
+      ref: trippi_app
   flutter: 
     sdk: flutter
 dev_dependencies: 

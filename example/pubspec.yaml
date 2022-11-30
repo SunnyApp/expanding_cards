@@ -5,15 +5,22 @@ environment:
   sdk: '>=2.14.0 <3.0.0'
 dependencies: 
   cached_network_image: ^3.2.0
-  logging_config: ^0.6.7+7
   logging: ^1.0.2
   cupertino_icons: ^1.0.4
+  logging_config: 
+    git: 
+      url: git@github.com:SunnyApp/logging_config
+      ref: trippi_app
   flutter: 
     sdk: flutter
   sunny_essentials: 
-    path: /Users/ericm/sunny/player_rank/packages/sunny_essentials
+    git: 
+      url: git@github.com:ericmartineau/sunny_essentials.git
+      ref: trippi_app
   expanding_cards: 
-    path: /Users/ericm/sunny/player_rank/packages/expanding_cards
+    git: 
+      url: git@github.com:SunnyApp/expanding_cards
+      ref: trippi_app
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
