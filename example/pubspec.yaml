@@ -4,20 +4,21 @@ description: Demonstrates how to use the expanding_cards plugin.
 environment: 
   sdk: '>=2.14.0 <3.0.0'
 dependencies: 
-  cached_network_image: ^3.2.0
-  logging_config: ^0.6.7+7
+  cached_network_image: ^3.2.2
   logging: ^1.0.2
-  cupertino_icons: ^1.0.4
+  cupertino_icons: ^1.0.5
+  logging_config: 
+    path: /Users/ericm/sunny/local_plugins/logging_config
   flutter: 
     sdk: flutter
   sunny_essentials: 
-    path: /Users/ericm/sunny/player_rank/packages/sunny_essentials
+    path: /Users/ericm/sunny/local_plugins/sunny_essentials
   expanding_cards: 
-    path: /Users/ericm/sunny/player_rank/packages/expanding_cards
+    path: /Users/ericm/sunny/local_plugins/expanding_cards
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
 dependency_overrides: 
-  provider: ^6.0.2
+  provider: ^6.0.3
 flutter: 
   uses-material-design: true
