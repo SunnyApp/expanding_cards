@@ -7,7 +7,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.8.1"
+    version: "2.9.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -21,28 +21,28 @@ packages:
       name: cached_network_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.0"
+    version: "3.2.3"
   cached_network_image_platform_interface:
     dependency: transitive
     description:
       name: cached_network_image_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "2.0.0"
   cached_network_image_web:
     dependency: transitive
     description:
       name: cached_network_image_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   characters:
     dependency: transitive
     description:
       name: characters
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.1"
   charcode:
     dependency: transitive
     description:
@@ -56,14 +56,14 @@ packages:
       name: clock
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
   collection:
     dependency: transitive
     description:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.15.0"
+    version: "1.16.0"
   crypto:
     dependency: transitive
     description:
@@ -74,24 +74,24 @@ packages:
   dartxx:
     dependency: "direct main"
     description:
-      name: dartxx
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.3+2"
+      path: "/Users/ericm/reliveit/checkout/ericmartineau/dartxx"
+      relative: false
+    source: path
+    version: "0.5.5"
   equatable:
     dependency: transitive
     description:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:
       name: fake_async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.3.1"
   ffi:
     dependency: transitive
     description:
@@ -124,28 +124,28 @@ packages:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.2"
+    version: "3.3.0"
+  flutter_datetime_picker:
+    dependency: transitive
+    description:
+      name: flutter_datetime_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.1"
   flutter_degen_annotations:
     dependency: transitive
     description:
-      name: flutter_degen_annotations
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.0+1"
-  flutter_platform_widgets:
-    dependency: transitive
-    description:
-      name: flutter_platform_widgets
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.9.5"
+      path: "/Users/ericm/reliveit/checkout/ericmartineau/flutter_degen_annotations"
+      relative: false
+    source: path
+    version: "1.7.0"
   flutter_screen_scaling:
     dependency: transitive
     description:
-      name: flutter_screen_scaling
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.3.2+3"
+      path: "/Users/ericm/reliveit/checkout/SunnyApp/flutter_screen_scaling"
+      relative: false
+    source: path
+    version: "2.3.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -175,10 +175,10 @@ packages:
   info_x:
     dependency: transitive
     description:
-      name: info_x
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.0+3"
+      path: "/Users/ericm/reliveit/checkout/ericmartineau/info_x"
+      relative: false
+    source: path
+    version: "0.8.0+2"
   intl:
     dependency: transitive
     description:
@@ -199,7 +199,14 @@ packages:
       name: matcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.10"
+    version: "0.12.12"
+  material_color_utilities:
+    dependency: transitive
+    description:
+      name: material_color_utilities
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.5"
   matrix4_transform:
     dependency: "direct main"
     description:
@@ -213,7 +220,7 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.0"
+    version: "1.8.0"
   nested:
     dependency: transitive
     description:
@@ -234,7 +241,7 @@ packages:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.2"
   path_provider:
     dependency: transitive
     description:
@@ -304,14 +311,14 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.1"
+    version: "6.0.4"
   quiver:
     dependency: transitive
     description:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.1.0"
   recase:
     dependency: transitive
     description:
@@ -337,7 +344,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.1"
+    version: "1.9.0"
   sqflite:
     dependency: transitive
     description:
@@ -372,14 +379,21 @@ packages:
       name: string_scanner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
   sunny_essentials:
     dependency: "direct main"
     description:
-      name: sunny_essentials
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.0+13"
+      path: "/Users/ericm/reliveit/checkout/ericmartineau/sunny_essentials"
+      relative: false
+    source: path
+    version: "0.8.2+1"
+  sunny_platform_widgets:
+    dependency: transitive
+    description:
+      path: "/Users/ericm/reliveit/checkout/SunnyApp/flutter_platform_widgets"
+      relative: false
+    source: path
+    version: "2.0.0"
   synchronized:
     dependency: transitive
     description:
@@ -393,28 +407,28 @@ packages:
       name: term_glyph
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.2.1"
   test_api:
     dependency: transitive
     description:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.2"
+    version: "0.4.12"
   timeago:
     dependency: transitive
     description:
       name: timeago
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.0"
+    version: "3.3.0"
   timezone:
     dependency: transitive
     description:
       name: timezone
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.0"
+    version: "0.9.0"
   typed_data:
     dependency: transitive
     description:
@@ -425,10 +439,10 @@ packages:
   uri:
     dependency: transitive
     description:
-      name: uri
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
+      path: "/Users/ericm/sunny/local_plugins/uri.dart"
+      relative: false
+    source: path
+    version: "1.0.1-dev"
   uuid:
     dependency: transitive
     description:
@@ -442,7 +456,7 @@ packages:
       name: vector_math
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.2"
   win32:
     dependency: transitive
     description:
@@ -458,5 +472,5 @@ packages:
     source: hosted
     version: "0.2.0"
 sdks:
-  dart: ">=2.14.0 <3.0.0"
-  flutter: ">=1.24.0"
+  dart: ">=2.18.0 <3.0.0"
+  flutter: ">=3.3.0"
