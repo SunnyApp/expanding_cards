@@ -1,6 +1,4 @@
-import 'dart:ui';
 
-import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/physics.dart';
 
@@ -15,6 +13,7 @@ class CustomRectTween extends RectTween {
     //any curve can be applied here e.g. Curve.elasticOut.transform(t);
     final verticalDist = Curves.decelerate.transform(t);
 
+    // ignore: unused_local_variable
     final top = lerpDouble(begin!.top, end!.top, t)! * verticalDist;
     return Rect.fromLTRB(
       lerpDouble(begin!.left, end!.left, verticalDist)!,
@@ -36,8 +35,7 @@ class ElastiRectTween extends RectTween {
   ElastiRectTween.ofPosition({required this.begin, required this.end})
       : heightTween = Tween(begin: begin.height, end: end.height),
         widthTween = Tween(begin: begin.width, end: end.width),
-        centerTween = Tween(begin: begin.center, end: end.center)
-            .chain(CurveTween(curve: ElasticOutCurve(0.6))),
+        centerTween = Tween(begin: begin.center, end: end.center).chain(CurveTween(curve: ElasticOutCurve(0.6))),
         super(begin: begin, end: end);
 
   final Rect begin;
@@ -50,21 +48,16 @@ class ElastiRectTween extends RectTween {
   Rect lerp(double t) {
     final centerLoc = centerTween.transform(t);
 
-    return Rect.fromCenter(
-        center: centerLoc,
-        width: widthTween.lerp(t),
-        height: heightTween.lerp(t));
+    return Rect.fromCenter(center: centerLoc, width: widthTween.lerp(t), height: heightTween.lerp(t));
   }
 }
 
-final customSprung =
-    Sprung.scroll(damping: 1.0, stiffness: 300, mass: 3, velocity: 5);
+final customSprung = Sprung.scroll(damping: 1.0, stiffness: 300, mass: 3, velocity: 5);
 final customSprungFlipped = customSprung.flipped;
 final frontLoaded = Interval(0, 1, curve: Curves.linear);
 
 class OvershootingRectTween extends RectTween {
-  OvershootingRectTween.ofPosition(
-      {required this.begin, required this.end, Curve? curve})
+  OvershootingRectTween.ofPosition({required this.begin, required this.end, Curve? curve})
       : heightTween = Tween(begin: begin.height, end: end.height),
         widthTween = Tween(begin: begin.width, end: end.width),
         topTween = Tween(begin: begin.topLeft, end: end.topLeft),
@@ -102,11 +95,7 @@ class Sprung extends Curve {
   /// See also: [Sprung.custom], [Sprung.underDamped], [Sprung.criticallyDamped], [Sprung.overDamped]
   factory Sprung([double damping = 20]) => Sprung.custom(damping: damping);
 
-  Sprung.scroll(
-      {double damping = 1.0,
-      double stiffness = 180,
-      double mass = 1.0,
-      double velocity = 0.0})
+  Sprung.scroll({double damping = 1.0, double stiffness = 180, double mass = 1.0, double velocity = 0.0})
       : _sim = ScrollSpringSimulation(
             SpringDescription.withDampingRatio(
               mass: mass,

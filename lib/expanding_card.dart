@@ -1,7 +1,6 @@
 import 'package:expanding_cards/tweens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 import 'package:sunny_essentials/slivers/resizing_pinned_header.dart';
@@ -65,11 +64,11 @@ class ExpandingCard extends StatefulWidget {
   final WidgetListGetter? alwaysShown;
 
   /// A unique id that identifies this card from otherss
-  final String? discriminator;
+  final String discriminator;
 
   /// A theme for the underlying card.  You can also use a `Provider` to use global
   /// styles
-  final PlatformCardTheme? theme;
+  final CardTheme? theme;
 
   /// The distance to pull before the card collapses
   final double? dragToCloseThreshold;
@@ -130,7 +129,7 @@ class ExpandingCard extends StatefulWidget {
     this.theme,
     this.headerTitle,
     this.buildRoute,
-    this.discriminator,
+    required this.discriminator,
     this.onCardTap,
     this.pinFirst = false,
     this.expandedFooterWrapper,
@@ -193,7 +192,7 @@ class _ExpandingCardState extends State<ExpandingCard>
 
   /// Cached bottom padding if you don't have a footer
   EdgeInsets? _bottomPadding;
-  PlatformCardTheme? _theme;
+  CardTheme? _theme;
 
   /// Cached builds
   Widget? _collapsed;
@@ -254,7 +253,7 @@ class _ExpandingCardState extends State<ExpandingCard>
   @override
   Widget build(BuildContext context) {
     _mq ??= MediaQuery.of(context);
-    _theme ??= PlatformCardTheme.of(context);
+    _theme ??= Theme.of(context).cardTheme;
     if (widget.isExpanded == true) {
       Widget? widget;
       return Provider.value(
@@ -357,8 +356,8 @@ class _ExpandingCardState extends State<ExpandingCard>
   Widget builtExpandedHeader(BuildContext context) {
     return SliverLayoutBuilder(
       builder: (context, size) {
-        final top = WidgetsBinding.instance!.window.padding.top /
-            WidgetsBinding.instance!.window.devicePixelRatio;
+        final top = WidgetsBinding.instance.window.padding.top /
+            WidgetsBinding.instance.window.devicePixelRatio;
 
         return _builtExpandedHeader ??= SliverAppBar(
           primary: true,
@@ -409,7 +408,11 @@ class _ExpandingCardState extends State<ExpandingCard>
     if (widget is HeaderBuilder) {
       return widget(context, _scroller, pushedTo(context));
     }
-    throw Exception("Invalid header type.  Must be Widget or HeaderBuilder");
+    if (widget is String) {
+      return Text(widget);
+    }
+    throw Exception(
+        "Invalid header type: ${widget?.runtimeType}.  Must be Widget or HeaderBuilder");
   }
 
   Widget get builtCollapsedHeader {
@@ -449,8 +452,9 @@ class _ExpandingCardState extends State<ExpandingCard>
               ])
         : widget.header;
 
-    return ClipRRect(
-      borderRadius: _theme!.borderRadius.top,
+    return Material(
+      clipBehavior: Clip.hardEdge,
+      shape: _theme!.shape,
       child: source,
     );
   }
@@ -509,7 +513,6 @@ class _ExpandingCardState extends State<ExpandingCard>
     return PlatformCard(
       args: PlatformCardArgs(
         color: widget.backgroundColor,
-        theme: _theme,
         margin: EdgeInsets.zero,
         padding: EdgeInsets.zero,
       ),
@@ -517,14 +520,15 @@ class _ExpandingCardState extends State<ExpandingCard>
         alignment: Alignment.bottomCenter,
         fit: StackFit.passthrough,
         children: [
-          ClipRRect(
-              borderRadius: _theme!.borderRadius,
+          Material(
+              shape: _theme!.shape,
+              clipBehavior: Clip.hardEdge,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   if (widget.header != null) builtCollapsedHeader,
-                  ...widget.alwaysShown!(context),
+                  ...?widget.alwaysShown?.call(context),
                   _buildBody(context, _cardState, animation)!,
                 ],
               )),
@@ -543,7 +547,8 @@ class _ExpandingCardState extends State<ExpandingCard>
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            for (final headerWidget in widget.alwaysShown!(context))
+            for (final headerWidget
+                in (widget.alwaysShown?.call(context) ?? <Widget>[]))
               if (count++ >= startIndex)
                 if (count == 1)
                   Container(
@@ -638,10 +643,10 @@ class _ExpandingCardState extends State<ExpandingCard>
                       SliverFillRemaining(
                         hasScrollBody: false,
                         fillOverscroll: true,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: widget.backgroundColor,
-                              borderRadius: _theme!.borderRadius),
+                        child: Material(
+                          color: widget.backgroundColor,
+                          clipBehavior: Clip.hardEdge,
+                          shape: _theme!.shape,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
