@@ -181,7 +181,6 @@ class _TestExpandingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpandingCard(
       backgroundColor: Colors.white,
-      theme: PlatformCardTheme.ofRadius(radiusAmount: 12),
       header: HeroBar(
         height: 135,
         expandedHeight: 200,

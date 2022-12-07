@@ -1,12 +1,4 @@
-include: package:dartxx/analysis_options.yaml
-analyzer:
-  enable-experiment:
-    - variance
-  errors:
-    annotate_overrides: info
-    always_declare_return_types: info
+include: package:flutter_lints/flutter.yaml
 
-linter:
-  rules:
-    annotate_overrides: info
-    always_declare_return_types: info
+# Additional information about this file can be found at
+# https://dart.dev/guides/language/analysis-options
