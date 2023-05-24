@@ -1,24 +1,24 @@
 name: expanding_cards_example
 publish_to: none
 description: Demonstrates how to use the expanding_cards plugin.
-environment:
+environment: 
   sdk: '>=2.14.0 <3.0.0'
-dependencies:
+dependencies: 
   cached_network_image: ^3.2.3
-  logging: ^1.1.0
+  logging: ^1.1.1
   cupertino_icons: ^1.0.5
-  logging_config:
+  logging_config: 
     path: /Users/ericm/reliveit/checkout/SunnyApp/logging_config
-  flutter:
+  flutter: 
     sdk: flutter
-  sunny_essentials:
+  sunny_essentials: 
     path: /Users/ericm/reliveit/checkout/ericmartineau/sunny_essentials
-  expanding_cards:
+  expanding_cards: 
     path: /Users/ericm/reliveit/checkout/SunnyApp/expanding_cards
-dev_dependencies:
-  flutter_test:
+dev_dependencies: 
+  flutter_test: 
     sdk: flutter
-dependency_overrides:
-  provider: ^6.0.4
-flutter:
+dependency_overrides: 
+  provider: ^6.0.5
+flutter: 
   uses-material-design: true
